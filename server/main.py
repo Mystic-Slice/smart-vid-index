@@ -14,7 +14,7 @@ urls = [
     "https://www.youtube.com/watch?v=sq-SqqsTlbM", # peterson
 ]
 
-ds = data_store.VideoSearchDataStore(os.getenv("REDIS_URL"), "video_search_ollama", "data_store/schema/", llm.get_embedding_func(), 20)
+ds = data_store.VideoSearchDataStore(os.getenv("QDRANT_URL"), "video_search_ollama", "data_store/schema/", llm.get_embedding_func(), 20)
 
 for url in urls:
     print(url)

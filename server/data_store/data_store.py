@@ -9,22 +9,22 @@ class VideoSearchDataStore:
     def __init__(self, qdrant_url, index_name, schema_dir, embedding_func, segment_length=20):
 
         sample_metadata = {
-            'author': 'TheRightMind', 
-            'channel_url': 'https://www.youtube.com/channel/UC6q7LpU3nQm52vNkz-1MVFA', 
-            'description': 'song', 
-            'length': 150, 
-            'title': 'Jordan Peterson Talks About His Own IQ', 
-            'video_id': 'sq-SqqsTlbM'
+            'author': '', 
+            'channel_url': '', 
+            'description': '', 
+            'length': 0, 
+            'title': '', 
+            'video_id': '',
         }
 
         self.__video_datastore = QdrantVectorStore.from_documents(
-            [Document(page_content="dummy", metadata=sample_metadata)],
+            [Document(page_content="", metadata=sample_metadata)],
             url=qdrant_url,
             collection_name=index_name + "_vid_store",
             embedding=embedding_func,
         )
         self.__caption_datastore = QdrantVectorStore.from_documents(
-            [Document(page_content="dummy", metadata=sample_metadata)],
+            [Document(page_content="", metadata=sample_metadata)],
             url=qdrant_url,
             collection_name=index_name + "_caption_store",
             embedding=embedding_func,
@@ -66,33 +66,24 @@ class VideoSearchDataStore:
         return True
     
     def is_video_in_db(self, video_id: str) -> bool:
-        print(type(video_id), video_id)
-        results = self.__video_datastore.similarity_search_with_score(
+        results = self.__video_datastore.similarity_search(
             query="", 
             filter=models.Filter(
                 must=[
                     models.FieldCondition(
-                        # key="video_id",
-                        # match=models.MatchValue(
-                        #     value=video_id
-                        # )
-                        key="metadata.author",
+                        key="metadata.video_id",
                         match=models.MatchValue(
-                            value="nothing"
+                            value=video_id
                         )
                     )
                 ]
-            )
+            ),
+            k=1,
         )
-        # print([result.metadata for result in results])
-        print(results)
-        print(len(results))
         return results != []
-        return False
     
     def search(self, query: str, num_results: int) -> List[dict]:
-        print(self.__video_datastore.schema)
         logging.info(f"[VideoSearchDataStore={self.__index_name}] Searching for query: {query}")
-        results = self.__caption_datastore.similarity_search(query, num_results, return_metadata=True)
+        results = self.__caption_datastore.similarity_search(query, k=num_results)
         logging.info(f"[VideoSearchDataStore={self.__index_name}] Search completed successfully num_results={len(results)}")
         return results

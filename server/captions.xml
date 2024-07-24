@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transcript>
+    <text start="0" dur="2.39">[SQUEAKING]</text>
+    <text start="2.39" dur="1.912">[RUSTLING]</text>
+    <text start="4.302" dur="2.39">[CLICKING]</text>
+    <text start="6.692" dur="2.698"></text>
+    <text start="9.39" dur="2.01">DAVID PERREAULT:\nOK, good afternoon.</text>
+    <text start="11.4" dur="4.71">So last time, we started\ntalking about power electronics</text>
+    <text start="16.11" dur="1.47">with three-phase elements.</text>
+    <text start="17.58" dur="3.138">We spent our time talking\nabout just diode rectifiers.</text>
+    <text start="20.718" dur="2.292">And that&amp;#39;s actually quite\nimportant because when
+        you&amp;#39;re</text>
+    <text start="23.01" dur="3.48">building really\nhigh-power systems,</text>
+    <text start="26.49" dur="1.92">very often that&amp;#39;s\nthe kind of thing</text>
+    <text start="28.41" dur="1.98">you have at your front\nend between your AC</text>
+    <text start="30.39" dur="2.43">to convert to DC.</text>
+    <text start="32.82" dur="2.88">At the same time, a\nlot of applications</text>
+    <text start="35.7" dur="2.73">require high-frequency\nswitching power conversion.</text>
+    <text start="38.43" dur="2.1">So the kind of things\nwe were talking</text>
+    <text start="40.53" dur="2.52">about single-phase\ninverters, the question</text>
+    <text start="43.05" dur="3.27">is, what do you do with\na three-phase inverter?</text>
+    <text start="46.32" dur="5.67">And one possibility is\njust to, in some cases,</text>
+    <text start="51.99" dur="2.07">replicate a single-phase system.</text>
+    <text start="54.06" dur="4.44">So you could imagine if I had,\nsay, a three-phase machine</text>
+    <text start="58.5" dur="5.25">with open-ended\nwindings, maybe I</text>
+    <text start="63.75" dur="6.79">would have something where I\nhad a phase A and a phase B</text>
+    <text start="70.54" dur="7.12">and a phase C. And each of\nthem have a pair of terminals.</text>
+    <text start="77.66" dur="3.35">And I say, OK, I can go build a\nthree-phase inverter basically</text>
+    <text start="81.01" dur="2.1">by building three\nsingle-phase inverters.</text>
+    <text start="83.11" dur="3.073">So maybe I come in\nfrom my DC bus, VDC.</text>
+    <text start="86.183" dur="4.037"></text>
+    <text start="90.22" dur="6.09">And I could come in and\nsay, OK, let me just build</text>
+    <text start="96.31" dur="4.893">a single-phase inverter, which\nwould be, say, four power</text>
+    <text start="101.203" dur="0.5">MOSFETs.</text>
+    <text start="101.703" dur="5.209"></text>
+    <text start="106.912" dur="3.691">And I&amp;#39;ll show the diodes on the\npower MOSFETs just
+        for clarity.</text>
+    <text start="110.603" dur="2.617"></text>
+    <text start="113.22" dur="2.88">And I could come out,\nand here&amp;#39;s one terminal,</text>
+    <text start="116.1" dur="1.44">and here&amp;#39;s the other.</text>
+    <text start="117.54" dur="3.69">And I build this\nto drive phase A.</text>
+    <text start="121.23" dur="1.533">And then I build another copy.</text>
+    <text start="122.763" dur="2.697"></text>
+    <text start="125.46" dur="3">This is phase A. I build\nanother copy, drive phase B.</text>
+    <text start="128.46" dur="4.6">And I bring it in from\nthe same terminals.</text>
+    <text start="133.06" dur="4.52">And then I build another\ncopy, and I drive phase C.</text>
+    <text start="137.58" dur="5.07">And I could again\nbuild in same DC bus.</text>
+    <text start="142.65" dur="1.68">And away I go.</text>
+    <text start="144.33" dur="1.65">So I have 12 devices.</text>
+    <text start="145.98" dur="3.45">I just have single-phase\ninverters, and I run it,</text>
+    <text start="149.43" dur="3.57">And in fact, sometimes\npeople do this.</text>
+    <text start="153" dur="2.22">And in fact, actually,\nat MIT right now,</text>
+    <text start="155.22" dur="2.52">we&amp;#39;re building a\nmegawatt system that</text>
+    <text start="157.74" dur="1.87">basically has this structure.</text>
+    <text start="159.61" dur="2.87">It&amp;#39;s sets of\nsingle-phase inverters</text>
+    <text start="162.48" dur="3.64">that drive a three-phase system,\nwhere the machine is a custom</text>
+    <text start="166.12" dur="3.54">machine and has so-called\nopen-ended windings like this.</text>
+    <text start="169.66" dur="2.88">So it works perfectly well.</text>
+    <text start="172.54" dur="6.12">However, the vast majority\nof, say, three-phase motors</text>
+    <text start="178.66" dur="3.55">are not just separate\nwindings connected like that.</text>
+    <text start="182.21" dur="6.92">Typically, if, for example, I\nhave a three-phase motor, what</text>
+    <text start="189.13" dur="3.93">I will have is either something\nconnected in wye, where this is</text>
+    <text start="193.06" dur="3.96">one motor winding, a second\nmotor winding, and a third motor</text>
+    <text start="197.02" dur="6.21">winding, where I&amp;#39;ll\nhave A, B, and C.</text>
+    <text start="203.23" dur="3.15">I only have three terminals.</text>
+    <text start="206.38" dur="2.98">Or maybe I have-- this\nis a wye connection.</text>
+    <text start="209.36" dur="2.06">Maybe I have a delta\nconnection where</text>
+    <text start="211.42" dur="1.67">the machine is wound like this.</text>
+    <text start="213.09" dur="3.13"></text>
+    <text start="216.22" dur="6.15">And again, I have A,\nB, and C. In this case,</text>
+    <text start="222.37" dur="1.24">I might have a neutral.</text>
+    <text start="223.61" dur="1.91">In this case, I have no neutral.</text>
+    <text start="225.52" dur="6.54">So in this case, I can&amp;#39;t just\narbitrarily apply
+        voltages</text>
+    <text start="232.06" dur="2.68">from three independent\nsingle-phase inverters.</text>
+    <text start="234.74" dur="0.5">Why?</text>
+    <text start="235.24" dur="3.51">Because if I accidentally\nconnected phase A</text>
+    <text start="238.75" dur="1.8">to high with one\ninverter and phase A</text>
+    <text start="240.55" dur="2.79">to low with another inverter,\nI&amp;#39;d out my DC bus and
+        everything</text>
+    <text start="243.34" dur="2.25">would blow up.</text>
+    <text start="245.59" dur="3.15">So if I&amp;#39;m going to\ndrive something that&amp;#39;s</text>
+    <text start="248.74" dur="4.33">connected as a three-phase\nload in wye or delta,</text>
+    <text start="253.07" dur="2.39">I need a different plan.</text>
+    <text start="255.46" dur="3.119">OK, so what do people do?</text>
+    <text start="258.579" dur="2.581">It&amp;#39;s very much the\nstructure that we</text>
+    <text start="261.16" dur="2.89">saw with the three-phase\nbridge rectifier.</text>
+    <text start="264.05" dur="2.3">Instead of having\ndiodes, however, I</text>
+    <text start="266.35" dur="3.57">will have active switches.</text>
+    <text start="269.92" dur="3.065">So maybe I would come up and\nbuild something like this.</text>
+    <text start="272.985" dur="3.565"></text>
+    <text start="276.55" dur="1.607">I&amp;#39;ll have my DC bus come in.</text>
+    <text start="278.157" dur="1.333">So I&amp;#39;ll have two terminals, VDC.</text>
+    <text start="279.49" dur="4.75"></text>
+    <text start="284.24" dur="3.04">I will have a first\nbridge leg like this.</text>
+    <text start="287.28" dur="3.51">And let me make sure and\nshow the diodes again.</text>
+    <text start="290.79" dur="3.06">And this can generate VA.</text>
+    <text start="293.85" dur="10.28">A second one can generate VB.</text>
+    <text start="304.13" dur="7.225">And a third one can generate VC.</text>
+    <text start="311.355" dur="3.385"></text>
+    <text start="314.74" dur="2.43">Maybe what I&amp;#39;ll do\nis I will consider</text>
+    <text start="317.17" dur="3.73">the midpoint of this bus for\nreasons we&amp;#39;ll talk about.</text>
+    <text start="320.9" dur="8.54">And I&amp;#39;m going to call this\nnode V sub R. OK,
+        that&amp;#39;s</text>
+    <text start="329.44" dur="1.18">my reference voltage.</text>
+    <text start="330.62" dur="1.91">It&amp;#39;s just the center\npoint of the bus.</text>
+    <text start="332.53" dur="4.63">Where I ground this thing,\nwe can discuss that.</text>
+    <text start="337.16" dur="2.48">But let me just pretend that\nthis is exactly in the middle.</text>
+    <text start="339.64" dur="2.408">It&amp;#39;s VDC over 2 from here.</text>
+    <text start="342.048" dur="2.042">And we&amp;#39;ll see why we&amp;#39;re\ngoing to talk about
+        that.</text>
+    <text start="344.09" dur="1.44">And that&amp;#39;s my inverter.</text>
+    <text start="345.53" dur="3.96">And maybe I would connect it\nup to some three-phase load.</text>
+    <text start="349.49" dur="2.3">So maybe it would\nlook like this.</text>
+    <text start="351.79" dur="3.21">I would have my three phases.</text>
+    <text start="355" dur="3.04">Here&amp;#39;s one.</text>
+    <text start="358.04" dur="1.74">Here&amp;#39;s two.</text>
+    <text start="359.78" dur="1.83">And here&amp;#39;s three.</text>
+    <text start="361.61" dur="2.34">And maybe I would\nconnect this point</text>
+    <text start="363.95" dur="3.39">to what I call V sub N,\nor the neutral point.</text>
+    <text start="367.34" dur="4.92">That&amp;#39;s this neutral point if\nit was a wye-connected
+        load.</text>
+    <text start="372.26" dur="5.52">Or I could just have line to\nlines if there&amp;#39;s no
+        neutral.</text>
+    <text start="377.78" dur="3.72">So what&amp;#39;s the advantage here?</text>
+    <text start="381.5" dur="4.17">Well, you&amp;#39;ll notice that\nthis structure only requires</text>
+    <text start="385.67" dur="2.49">six stitches instead of my 12.</text>
+    <text start="388.16" dur="1.74">So it&amp;#39;s simpler.</text>
+    <text start="389.9" dur="5.16">It also turns out that as\ncompared to that solution--</text>
+    <text start="395.06" dur="3.3">let&amp;#39;s suppose I could connect\nmy motor either way I
+        wanted.</text>
+    <text start="398.36" dur="3.54">I could connect it\nin wye or delta,</text>
+    <text start="401.9" dur="3.84">or I could connect it as\nthree independent windings.</text>
+    <text start="405.74" dur="3.957">Because this circuit,\nlike this phase leg--</text>
+    <text start="409.697" dur="2.583">whatever current goes out, it\nreturns through one of the
+        other</text>
+    <text start="412.28" dur="2.34">phase legs--</text>
+    <text start="414.62" dur="3.97">I get an advantage in terms of\nthe utilization of the devices.</text>
+    <text start="418.59" dur="3.51">So I will either require\nless semiconductor area</text>
+    <text start="422.1" dur="3.27">to get a certain conduction\nloss in this structure,</text>
+    <text start="425.37" dur="3.51">or I will have lower loss\nfor the same semiconductor</text>
+    <text start="428.88" dur="3.69">area-- lower conduction loss\nfor the same semiconductor area</text>
+    <text start="432.57" dur="2.49">as I will compared\nto the top solution.</text>
+    <text start="435.06" dur="4.56">So this solution in most\nthree-phase applications</text>
+    <text start="439.62" dur="2.49">is vastly preferred.</text>
+    <text start="442.11" dur="1.72">Where&amp;#39;s the exception to that?</text>
+    <text start="443.83" dur="4.88">It turns out that if I wanted\nto generate a certain ripple</text>
+    <text start="448.71" dur="4.44">in an inductive load, like\na motor inductive back</text>
+    <text start="453.15" dur="3.09">emf kind of load, it\nturns out that you end up</text>
+    <text start="456.24" dur="2.79">having to switch this\nbridge at a higher frequency</text>
+    <text start="459.03" dur="2.92">than you do the three\nsets of single phase.</text>
+    <text start="461.95" dur="3.08">So in a system where it&amp;#39;s a\nreally high-frequency
+        output</text>
+    <text start="465.03" dur="2.7">and your switching losses\nare heavily dominated,</text>
+    <text start="467.73" dur="3.52">the top solution actually ends\nup starting to be advantageous.</text>
+    <text start="471.25" dur="3.08">So in very specialized,\nhigh-speed machines,</text>
+    <text start="474.33" dur="2.55">for example, you might\ngo for the top solution</text>
+    <text start="476.88" dur="2.32">of independent phase\ndrive if you&amp;#39;re allowed.</text>
+    <text start="479.2" dur="4.4">But the vast majority\nof three-phase inverters</text>
+    <text start="483.6" dur="2.46">or three-phase DC to\nAC converters, power</text>
+    <text start="486.06" dur="1.41">could flow either direction.</text>
+    <text start="487.47" dur="4.41">Where you have active control\nis with this three-phase bridge</text>
+    <text start="491.88" dur="0.97">structure.</text>
+    <text start="492.85" dur="3.32"></text>
+    <text start="496.17" dur="1.805">Any questions about that so far?</text>
+    <text start="497.975" dur="3.125"></text>
+    <text start="501.1" dur="4.56">So one thing I wanted\nto note about this</text>
+    <text start="505.66" dur="6.03">is that I want to pay attention\nthat these devices are--</text>
+    <text start="511.69" dur="2.25">especially if the load\nis going to be inductive,</text>
+    <text start="513.94" dur="2.25">so I don&amp;#39;t actually control\ninstantaneously, say,</text>
+    <text start="516.19" dur="1.869">what the direction\nof that load is--</text>
+    <text start="518.059" dur="4.041">I usually have devices with\nreverse diodes on them,</text>
+    <text start="522.1" dur="3.18">or I use MOSFETs, which have it\nbuilt in because that way when</text>
+    <text start="525.28" dur="1.89">I turn one device\noff, I can always</text>
+    <text start="527.17" dur="1.9">guarantee there&amp;#39;s a\npath for the current.</text>
+    <text start="529.07" dur="2.72">So these are\nsingle-directional blocking,</text>
+    <text start="531.79" dur="1.9">bi-directional\ncarrying switches.</text>
+    <text start="533.69" dur="3.71">So this is a kind of\nvoltage source inverter.</text>
+    <text start="537.4" dur="2.46">There are also three-phase\ncurrent source inverters</text>
+    <text start="539.86" dur="1.9">just as there are\nwith single phase.</text>
+    <text start="541.76" dur="4.46">But again, this is\nvastly the most common.</text>
+    <text start="546.22" dur="6.51">Just to illustrate this,\nI&amp;#39;ll show you this guy here.</text>
+    <text start="552.73" dur="4.23">This is actually an inverter\nout of an older model Prius.</text>
+    <text start="556.96" dur="2.5">You&amp;#39;ll see the two in here.</text>
+    <text start="559.46" dur="1.28">That&amp;#39;s the DC bus coming in.</text>
+    <text start="560.74" dur="1.75">That&amp;#39;s where the\ncapacitors and everything</text>
+    <text start="562.49" dur="2.71">else would hook up and\ngo back to the battery.</text>
+    <text start="565.2" dur="5.69">And then there&amp;#39;s phase A,\nphase B, phase C outputs.</text>
+    <text start="570.89" dur="2.97">Each of these, what you&amp;#39;ll see\nis a pile of devices in
+        parallel</text>
+    <text start="573.86" dur="1.96">in order to provide\nthe required power.</text>
+    <text start="575.82" dur="1.43">And when you look\nclosely at this,</text>
+    <text start="577.25" dur="2.76">you&amp;#39;re going to see that\nthere are essentially</text>
+    <text start="580.01" dur="2.53">three terminal devices that\ngo back to gate drivers.</text>
+    <text start="582.54" dur="2.39">Those are the IGBTs\nin this older model.</text>
+    <text start="584.93" dur="2.25">Today, they use\nsilicon carbide FETs.</text>
+    <text start="587.18" dur="2.73">And in antiparallel with\nthem, because the IGBT</text>
+    <text start="589.91" dur="3.27">can&amp;#39;t carry reverse current,\nthey have actual diodes.</text>
+    <text start="593.18" dur="3.39">So in their design,\nthe actual diode</text>
+    <text start="596.57" dur="4.374">is separate from\nthe actual switch.</text>
+    <text start="600.944" dur="1.366">And so I&amp;#39;ll pass this around.</text>
+    <text start="602.31" dur="0.792">You can look at it.</text>
+    <text start="603.102" dur="1.801">And by the way, if\nyour Prius happens</text>
+    <text start="604.903" dur="1.417">to be missing an\ninverter, I swear</text>
+    <text start="606.32" dur="1.54">I had nothing to do with it.</text>
+    <text start="607.86" dur="3.73"></text>
+    <text start="611.59" dur="4.53">So what can I do\nwith this inverter?</text>
+    <text start="616.12" dur="2.583">Keep in mind-- go ahead, Jack.</text>
+    <text start="618.703" dur="2.167">AUDIENCE: I just have a\nquestion about the inverter?</text>
+    <text start="620.87" dur="1.61">Why would they\nchoose to do IGBTs</text>
+    <text start="622.48" dur="1.528">with diodes instead of MOSFET?</text>
+    <text start="624.008" dur="2.042">DAVID PERREAULT: Ah, that&amp;#39;s\na very good question.</text>
+    <text start="626.05" dur="3.21">Because if you think\nabout a MOSFET,</text>
+    <text start="629.26" dur="3.18">a MOSFET&amp;#39;s on state\nlooks like a resistance,</text>
+    <text start="632.44" dur="4.17">whereas an IGBT&amp;#39;s on state\nlooks like a constant drop.</text>
+    <text start="636.61" dur="3.39">And it turns out that at\nthe time that was built,</text>
+    <text start="640" dur="2.79">for a very high-voltage\ndevice, you</text>
+    <text start="642.79" dur="4.74">could get lower forward drop for\na given device area with an
+        IGBT</text>
+    <text start="647.53" dur="1.72">than you could with a FET.</text>
+    <text start="649.25" dur="5.16">And so maybe until 5\nyears ago or maybe 10,</text>
+    <text start="654.41" dur="3.75">it was most common to use IGBTs\nespecially at high voltage.</text>
+    <text start="658.16" dur="4.41">More recently, with\nwide-band gap devices,</text>
+    <text start="662.57" dur="5.91">people are starting to move over\nto sometimes IGBTs but mainly</text>
+    <text start="668.48" dur="4.173">FET kind of structures because\nyou can get away with that.</text>
+    <text start="672.653" dur="1.417">And it turns out\nto be lower loss.</text>
+    <text start="674.07" dur="1.915">So whichever switch\ngives you less loss</text>
+    <text start="675.985" dur="1.875">is ultimately what you\nwant to choose to use.</text>
+    <text start="677.86" dur="2.73"></text>
+    <text start="680.59" dur="4.5">So let&amp;#39;s think about\nwhat we can do with this.</text>
+    <text start="685.09" dur="3.09">And keep in mind, we said\none of the big advantages</text>
+    <text start="688.18" dur="6.36">of having three phase is that we\nget natural cancellation of
+        all</text>
+    <text start="694.54" dur="1.38">the triple-N harmonics.</text>
+    <text start="695.92" dur="2.97">And we&amp;#39;re going to see that\nwith this inverter
+        structure.</text>
+    <text start="698.89" dur="2.34">But essentially, if\nI think about it,</text>
+    <text start="701.23" dur="1.32">I have three bridge legs.</text>
+    <text start="702.55" dur="2.79"></text>
+    <text start="705.34" dur="4.59">And each one of them, either\nthe top switch can be on</text>
+    <text start="709.93" dur="1.47">or the bottom switch can be on.</text>
+    <text start="711.4" dur="4.92">So it&amp;#39;s like there&amp;#39;s 2 to\nthe 3, or 8, possible
+        states</text>
+    <text start="716.32" dur="3.45">for these inverter switches to\nbe on, assuming one switch is</text>
+    <text start="719.77" dur="2.16">always on in each bridge leg.</text>
+    <text start="721.93" dur="3.78">So eight possible states.</text>
+    <text start="725.71" dur="6.3">If I come and show you what\nthose states look like,</text>
+    <text start="732.01" dur="1.56">they look like this.</text>
+    <text start="733.57" dur="2.82">So if I think about\nthe three inputs,</text>
+    <text start="736.39" dur="3.44">I can have bottom, bottom,\nbottom; top, bottom, bottom; et</text>
+    <text start="739.83" dur="0.5">cetera.</text>
+    <text start="740.33" dur="1.41">There&amp;#39;s eight possible states.</text>
+    <text start="741.74" dur="2.58"></text>
+    <text start="744.32" dur="6.56">And these are what you get\nfor AR, BR, and CR normalized</text>
+    <text start="750.88" dur="2.19">to the DC bus voltage.</text>
+    <text start="753.07" dur="4.51">And then this is what you\nget for VAB, VBC, and VCA</text>
+    <text start="757.58" dur="1.56">at the line-to-line voltages.</text>
+    <text start="759.14" dur="5.3">And this is what you get for\nthe line-to-neutral voltages</text>
+    <text start="764.44" dur="1.99">on this load.</text>
+    <text start="766.43" dur="5.9">And I want to emphasize\nthat in this structure,</text>
+    <text start="772.33" dur="3.42">I&amp;#39;m not proposing that\nwe connect this reference</text>
+    <text start="775.75" dur="1.92">voltage to the neutral.</text>
+    <text start="777.67" dur="3.12">This neutral, if it&amp;#39;s\na wye-connected system,</text>
+    <text start="780.79" dur="2.7">we&amp;#39;re typically leaving\nthis neutral floating.</text>
+    <text start="783.49" dur="2.7">So it&amp;#39;s not connected\nto anything.</text>
+    <text start="786.19" dur="2.88">Or in a delta-connected system--</text>
+    <text start="789.07" dur="2.842">I drew this as if it were\na wye-connected system.</text>
+    <text start="791.912" dur="1.458">If it was a\ndelta-connected system,</text>
+    <text start="793.37" dur="2.85">there wouldn&amp;#39;t\neven be a neutral.</text>
+    <text start="796.22" dur="4.33">So the neutral is not connected\nto this reference voltage.</text>
+    <text start="800.55" dur="4.67">So how do I figure out what\nthe voltage say between VA</text>
+    <text start="805.22" dur="2.17">and the neutral is?</text>
+    <text start="807.39" dur="0.92">So this would be--</text>
+    <text start="808.31" dur="2.52">I&amp;#39;d call this VAN.</text>
+    <text start="810.83" dur="4.92">Well, if I imagined that my\nload, which might be a motor,</text>
+    <text start="815.75" dur="2.67">acts like three\nidentical impedances,</text>
+    <text start="818.42" dur="1.66">then it&amp;#39;s just a\nvoltage divider.</text>
+    <text start="820.08" dur="4.46">So if I have one bottom switch\non and two top switches on, VN</text>
+    <text start="824.54" dur="2.35">goes to 2/3 of the way up.</text>
+    <text start="826.89" dur="2.81">If two bottom switches are\non and one top switch is</text>
+    <text start="829.7" dur="2.82">on, it&amp;#39;s 2/3 of the\nway to the bottom.</text>
+    <text start="832.52" dur="3.6">If all the top switches\nare on, VN goes to the top.</text>
+    <text start="836.12" dur="4.89">So the neutral just goes\nup and down instantaneously</text>
+    <text start="841.01" dur="3.72">based on voltage division\nfrom these individual values.</text>
+    <text start="844.73" dur="2.34">Now, I&amp;#39;m not saying\nyou could not</text>
+    <text start="847.07" dur="2.088">tie the neutral back\nto the reference,</text>
+    <text start="849.158" dur="1.042">the center of the bridge.</text>
+    <text start="850.2" dur="2.54">In fact, that would be just\nthis circuit with half bridges</text>
+    <text start="852.74" dur="1.27">instead of full bridges.</text>
+    <text start="854.01" dur="5.9">It&amp;#39;s just not common to do\nbecause you lose the
+        three-phase</text>
+    <text start="859.91" dur="0.87">harmonic--</text>
+    <text start="860.78" dur="2.4">the three-phase triple-N\ncancellation if you do that.</text>
+    <text start="863.18" dur="2.67">You lose a lot of\nthe benefits if you</text>
+    <text start="865.85" dur="3.98">don&amp;#39;t let the neutral float.</text>
+    <text start="869.83" dur="6.1">So this just shows the\nvoltages I can synthesize.</text>
+    <text start="875.93" dur="4.89">Two of the eight states\nbasically short out the load.</text>
+    <text start="880.82" dur="3.3">Because if all the\ntop switches are on,</text>
+    <text start="884.12" dur="2.62">basically I&amp;#39;m tying all of\nthese three nodes together.</text>
+    <text start="886.74" dur="3.54">So they basically just short\nthe three terminals together.</text>
+    <text start="890.28" dur="3.35">If all the bottom switches\nare on, I do the same thing.</text>
+    <text start="893.63" dur="4.71">And any other switch\nconfiguration,</text>
+    <text start="898.34" dur="4.83">I get some other set of\nstates on my inverter output.</text>
+    <text start="903.17" dur="2.22">Any questions about that?</text>
+    <text start="905.39" dur="3.01">AUDIENCE: So where&amp;#39;s the\nvoltage divider between again?</text>
+    <text start="908.4" dur="5.18">DAVID PERREAULT: So for\nexample, suppose I took--</text>
+    <text start="913.58" dur="1.33">let me draw it this way.</text>
+    <text start="914.91" dur="2.64">Here&amp;#39;s VDC.</text>
+    <text start="917.55" dur="2.81">Suppose I turn the\ntop switch on here.</text>
+    <text start="920.36" dur="4.02">So that means I tie\nthis guy to the top.</text>
+    <text start="924.38" dur="9.71">If the top switch is on here,\nI tie this guy to the top.</text>
+    <text start="934.09" dur="5.1">And if the last guy has\nthe bottom switch on,</text>
+    <text start="939.19" dur="1.6">I tie him to the bottom.</text>
+    <text start="940.79" dur="3.32">So if I have two to the\ntop and one to the bottom,</text>
+    <text start="944.11" dur="3.12">this node voltage, if these\ngreen boxes are all equal,</text>
+    <text start="947.23" dur="2.45">impedances will be 2/3 of\nthe way to the top by voltage</text>
+    <text start="949.68" dur="0.5">division.</text>
+    <text start="950.18" dur="2.76">Does that make sense?</text>
+    <text start="952.94" dur="3.85">OK, so that&amp;#39;s the way you\ntend to think about it.</text>
+    <text start="956.79" dur="2.91">So one way I could\nrun this is very</text>
+    <text start="959.7" dur="3.54">much like the inverse\nof the diode rectifier</text>
+    <text start="963.24" dur="1.74">I talked about last time.</text>
+    <text start="964.98" dur="5.65">If you remember last time,\nas the AC waveform happened</text>
+    <text start="970.63" dur="3.67">and drove the diode bridge, the\nindividual diodes turned on.</text>
+    <text start="974.3" dur="5.28">If you remember, it was like 1,\n2; 2, 3; 3, 4; 4, 5; 5, 6; 6, 1.</text>
+    <text start="979.58" dur="5.03">So it just went around\nin this six-step pattern.</text>
+    <text start="984.61" dur="5.91">Well, I could actively control\nthese devices to follow through</text>
+    <text start="990.52" dur="4.59">those six patterns,\nignoring 000 and 111.</text>
+    <text start="995.11" dur="1.93">So those are the\ntwo I wouldn&amp;#39;t use.</text>
+    <text start="997.04" dur="3.38">And this is what it would\nlook like if you did that.</text>
+    <text start="1000.42" dur="6.51">You would see that, say, each\nhalf bridge in this inverter</text>
+    <text start="1006.93" dur="2.37">would be on half the time.</text>
+    <text start="1009.3" dur="3.99">So A might be on exactly\nlike a square in phase</text>
+    <text start="1013.29" dur="1.33">with a sine wave.</text>
+    <text start="1014.62" dur="4.07">B would be on but\nshifted by 2 pi over 3.</text>
+    <text start="1018.69" dur="5.01">And C would be on with high\nshifted by another 2 pi over 3.</text>
+    <text start="1023.7" dur="5.139">So I&amp;#39;d have three square waves,\nVA, VB, and VC with
+        respect</text>
+    <text start="1028.839" dur="2.76">to the reference.</text>
+    <text start="1031.599" dur="4.441">What would happen at the load?</text>
+    <text start="1036.04" dur="8.64">Well, if I looked at VAB, VBC,\nand VCA, that&amp;#39;s these
+        next--</text>
+    <text start="1044.68" dur="1.45">the next three here--</text>
+    <text start="1046.13" dur="2.3">and I apologize; it&amp;#39;s not\nthe prettiest diagram--</text>
+    <text start="1048.43" dur="3.12">are the line-to-line voltages.</text>
+    <text start="1051.55" dur="2.25">So all I&amp;#39;m doing is\ninstead of looking</text>
+    <text start="1053.8" dur="4.11">at what this is with\nrespect to the reference,</text>
+    <text start="1057.91" dur="3.73">I&amp;#39;m just looking at the\ndifference between VA and VB.</text>
+    <text start="1061.64" dur="3.86">And what you can see is\nthat these three suddenly</text>
+    <text start="1065.5" dur="3.84">take on this six-step waveform,\nwhich looks just like what</text>
+    <text start="1069.34" dur="2.55">the diode rectifier was doing.</text>
+    <text start="1071.89" dur="3.36">It&amp;#39;s just that now I&amp;#39;m\nimposing a DC voltage</text>
+    <text start="1075.25" dur="2.61">with that six-step\npattern to say the machine</text>
+    <text start="1077.86" dur="2.97">or whatever it is I&amp;#39;m driving.</text>
+    <text start="1080.83" dur="3.59">Any questions about that?</text>
+    <text start="1084.42" dur="5.52">Now, if I do that, because\nthe line-to-line voltages--</text>
+    <text start="1089.94" dur="2.76">these square waves, which is\nthe line to reference voltages,</text>
+    <text start="1092.7" dur="1.12">have third harmonic.</text>
+    <text start="1093.82" dur="3.71">But because I&amp;#39;m taking the\ndifference between two of
+        them</text>
+    <text start="1097.53" dur="2.73">to get the line-to-line voltage\nshifted by a third of a cycle,</text>
+    <text start="1100.26" dur="3.03">all the triple-N\ncomponents disappear.</text>
+    <text start="1103.29" dur="5.16">So the line-to-line voltages\nhave no triple-N components.</text>
+    <text start="1108.45" dur="2.842">So whatever my motor\nsees it&amp;#39;s line to line,</text>
+    <text start="1111.292" dur="1.958">if I&amp;#39;m driving, say, a\ndelta-connected machine,</text>
+    <text start="1113.25" dur="2.17">it will see no triple-N drive.</text>
+    <text start="1115.42" dur="3.8">And that&amp;#39;s just free because I\nhave this three-phase
+        inverter</text>
+    <text start="1119.22" dur="0.52">structure.</text>
+    <text start="1119.74" dur="3.68">If everything&amp;#39;s balanced, it\ncan&amp;#39;t generate
+        three-phase line</text>
+    <text start="1123.42" dur="2.76">to line.</text>
+    <text start="1126.18" dur="1.16">Any questions about that?</text>
+    <text start="1127.34" dur="5.04"></text>
+    <text start="1132.38" dur="7.62">What would it do as regards\nthe line-to-neutral voltages?</text>
+    <text start="1140" dur="3.42">Well, if I did that, we\nsaid this thing is basically</text>
+    <text start="1143.42" dur="1.77">a voltage divider.</text>
+    <text start="1145.19" dur="4.47">But I could think about\nit basically being--</text>
+    <text start="1149.66" dur="6.08">the neutral voltage as being of\nthe average of VA, VB, and VC.</text>
+    <text start="1155.74" dur="6.84">And what essentially happens\nis that each of VA, VB,</text>
+    <text start="1162.58" dur="2.55">VC has a fundamental,\nand then it</text>
+    <text start="1165.13" dur="2.46">has, for example,\na third harmonic</text>
+    <text start="1167.59" dur="2.16">because it&amp;#39;s a square wave.</text>
+    <text start="1169.75" dur="3.99">The fundamentals are 120\ndegrees out of phase,</text>
+    <text start="1173.74" dur="3.52">but that means that the third\nharmonics are exactly in phase.</text>
+    <text start="1177.26" dur="2.99">So the third harmonics of\neach of these square waves</text>
+    <text start="1180.25" dur="2.64">add at the neutral, and\nyou get a neutral voltage</text>
+    <text start="1182.89" dur="3.56">that bops up and down\nat the third harmonic.</text>
+    <text start="1186.45" dur="3.3">So this has-- the\nneutral contains</text>
+    <text start="1189.75" dur="5.59">the third harmonic and actually\nall the triple-N harmonics.</text>
+    <text start="1195.34" dur="3.14">And so as a result,\njust as the line to line</text>
+    <text start="1198.48" dur="1.83">didn&amp;#39;t have any\ntriple-N harmonics,</text>
+    <text start="1200.31" dur="2.23">neither did any of the\nline-to-neutral voltages.</text>
+    <text start="1202.54" dur="1.85">So if it&amp;#39;s\nwye-connected machine,</text>
+    <text start="1204.39" dur="1.65">the line-to-neutral\nvoltage, which</text>
+    <text start="1206.04" dur="2.58">is really what&amp;#39;s driving\ncurrent in this thing,</text>
+    <text start="1208.62" dur="2.91">no triple-N harmonics.</text>
+    <text start="1211.53" dur="1.45">Does that make\nsense to everybody?</text>
+    <text start="1212.98" dur="2.71"></text>
+    <text start="1215.69" dur="2.43">So this kind of\noperation is what&amp;#39;s</text>
+    <text start="1218.12" dur="3.24">known as six-step operation.</text>
+    <text start="1221.36" dur="6.33">At each AC cycle, I&amp;#39;m switching\nmy devices as minimum
+        as I can.</text>
+    <text start="1227.69" dur="8.02">And I just go through and step\nsequentially around in a cycle.</text>
+    <text start="1235.71" dur="3.86">And in fact, the Tesla\negg demo that we brought,</text>
+    <text start="1239.57" dur="1.54">that&amp;#39;s basically\nwhat it was doing.</text>
+    <text start="1241.11" dur="2.54">It had six switches,\nand it was just</text>
+    <text start="1243.65" dur="2.1">boom, boom, boom,\nsix-stepping around</text>
+    <text start="1245.75" dur="3.125">to generate a rotating magnetic\nfield which spun up the egg.</text>
+    <text start="1248.875" dur="4.015"></text>
+    <text start="1252.89" dur="2.7">That&amp;#39;s a fine way to operate.</text>
+    <text start="1255.59" dur="4.26">And in fact, it generates the\nlargest fundamental component</text>
+    <text start="1259.85" dur="2.44">you can generate out\nof this inverter.</text>
+    <text start="1262.29" dur="0.56">Why?</text>
+    <text start="1262.85" dur="1.92">Because each half\nbridge is basically</text>
+    <text start="1264.77" dur="3.57">generating a square wave--</text>
+    <text start="1268.34" dur="1.38">the largest\nfundamental component</text>
+    <text start="1269.72" dur="2.31">you can generate\nwhen you&amp;#39;re not tying</text>
+    <text start="1272.03" dur="3.305">the neutral back to the\nreference point, I should say.</text>
+    <text start="1275.335" dur="3.095"></text>
+    <text start="1278.43" dur="2.56">That&amp;#39;s not the only way\nyou could drive this.</text>
+    <text start="1280.99" dur="1.55">You could actually\nstart thinking</text>
+    <text start="1282.54" dur="7.2">about doing things like\nharmonic elimination waveforms.</text>
+    <text start="1289.74" dur="3.78">Instead of generating\nsquare waves</text>
+    <text start="1293.52" dur="2.643">in between the top\nand bottom switching,</text>
+    <text start="1296.163" dur="1.917">you could start thinking\nabout putting notches</text>
+    <text start="1298.08" dur="2.22">in those waveforms.</text>
+    <text start="1300.3" dur="2.61">Now, if you&amp;#39;re going to put\nnotches in the waveforms,</text>
+    <text start="1302.91" dur="2.162">you wouldn&amp;#39;t try to\neliminate the third harmonic,</text>
+    <text start="1305.072" dur="1.958">because the third harmonic\nis going to go away.</text>
+    <text start="1307.03" dur="2.6">You might try to eliminate\nthe fifth and possibly</text>
+    <text start="1309.63" dur="1.42">the seventh harmonic.</text>
+    <text start="1311.05" dur="2.33">So the same kind\nof games we talked</text>
+    <text start="1313.38" dur="2.16">about playing with a\nsingle-phase inverter,</text>
+    <text start="1315.54" dur="1.93">you can play with\nthree-phase inverters.</text>
+    <text start="1317.47" dur="2.24">It&amp;#39;s just that you&amp;#39;re\ndoing each phase</text>
+    <text start="1319.71" dur="3.36">and then you&amp;#39;re shifting\nthat by a third of a cycle</text>
+    <text start="1323.07" dur="2.59">to get to the next phase.</text>
+    <text start="1325.66" dur="1.37">Any questions about that?</text>
+    <text start="1327.03" dur="2.75"></text>
+    <text start="1329.78" dur="1.8">So those are the\nkind of games you</text>
+    <text start="1331.58" dur="3.39">would play if you&amp;#39;re\nat very high outputs</text>
+    <text start="1334.97" dur="3.24">where you don&amp;#39;t want to\nswitch your devices very much.</text>
+    <text start="1338.21" dur="2.55">But in a large part\nof the operating</text>
+    <text start="1340.76" dur="5.4">range for modern\nelectric machines,</text>
+    <text start="1346.16" dur="1.69">you don&amp;#39;t have to do that.</text>
+    <text start="1347.85" dur="4.64">You can do a much nicer job of\nsynthesizing a waveform that</text>
+    <text start="1352.49" dur="3.51">would look very close--</text>
+    <text start="1356" dur="2.67">that would have a\nfundamental content</text>
+    <text start="1358.67" dur="2.88">that follows very closely, for\nexample, a sine wave, if you</text>
+    <text start="1361.55" dur="3.54">were driving a machine that\nwanted sine wave voltages,</text>
+    <text start="1365.09" dur="4.83">or that would generate\nthree-phase waveforms if you</text>
+    <text start="1369.92" dur="2.58">wanted to make a three-phase\nuninterruptible power</text>
+    <text start="1372.5" dur="3.24">supply that would synthesize\na three-phase output that</text>
+    <text start="1375.74" dur="3.12">would look very much\nlike sine wave outputs.</text>
+    <text start="1378.86" dur="3.6">How would you do that?</text>
+    <text start="1382.46" dur="1.9">Well, let&amp;#39;s think about that.</text>
+    <text start="1384.36" dur="1.8">What would I do?</text>
+    <text start="1386.16" dur="5.13">Well, what I could do is I could\nmake each of the phase
+        outputs,</text>
+    <text start="1391.29" dur="2.61">think about them independently,\ngenerate something</text>
+    <text start="1393.9" dur="3.03">that looked like a sine with\nrespect to the reference,</text>
+    <text start="1396.93" dur="1.71">on average.</text>
+    <text start="1398.64" dur="2.79">Well, how would I do that?</text>
+    <text start="1401.43" dur="4.11">The same way we did things with\nDC-to-DC converters or
+        DC-to-AC</text>
+    <text start="1405.54" dur="3">converters and single-phase\nDC-to-AC converters.</text>
+    <text start="1408.54" dur="3.09">Maybe I would take\nand say, OK, suppose</text>
+    <text start="1411.63" dur="3.15">I wanted VAR to\nfollow some sine wave.</text>
+    <text start="1414.78" dur="4.71">I could create\nsome triangle wave</text>
+    <text start="1419.49" dur="4.97">that&amp;#39;s a carrier wave that\ndoes something like this.</text>
+    <text start="1424.46" dur="6.615"></text>
+    <text start="1431.075" dur="7.355">And I&amp;#39;m going to exaggerate the\nratios between the
+        switching</text>
+    <text start="1438.43" dur="5.511">frequency and the line frequency\njust for visualization.</text>
+    <text start="1443.941" dur="2.809"></text>
+    <text start="1446.75" dur="3.22">But here I have a triangle wave.</text>
+    <text start="1449.97" dur="8.05">Maybe I&amp;#39;ll call this\nminus VT max and VT max.</text>
+    <text start="1458.02" dur="3.99">We might think of those as 1\nvolt, plus or minus 1 volt.</text>
+    <text start="1462.01" dur="2.71">And this is 0.</text>
+    <text start="1464.72" dur="3.85">And this we might\nthink of as T switch.</text>
+    <text start="1468.57" dur="5.91">T switch is equal to 1 over\nthe switching frequency</text>
+    <text start="1474.48" dur="3.315">that I&amp;#39;m going to switch at.</text>
+    <text start="1477.795" dur="5.235">And then what I could do\nis I could create a signal.</text>
+    <text start="1483.03" dur="1.103">Let me call this--</text>
+    <text start="1484.133" dur="5.137"></text>
+    <text start="1489.27" dur="10.69">I&amp;#39;ll call this VAR ref.</text>
+    <text start="1499.96" dur="2.04">This is the reference\nvoltage to which</text>
+    <text start="1502" dur="3.54">I want within a\nswitching cycle VA</text>
+    <text start="1505.54" dur="5.72">to follow with respect\nto the reference.</text>
+    <text start="1511.26" dur="1.3">So what would I do?</text>
+    <text start="1512.56" dur="1.76">I&amp;#39;d then put this\ninto a comparator</text>
+    <text start="1514.32" dur="2.865">if I called this V triangle.</text>
+    <text start="1517.185" dur="2.505"></text>
+    <text start="1519.69" dur="3.06">So I could then just\ncreate a comparator</text>
+    <text start="1522.75" dur="6.54">and say, OK, into this terminal,\nI&amp;#39;m going to put VAR
+        ref.</text>
+    <text start="1529.29" dur="4.68">Into this terminal, I&amp;#39;m\ngoing to put V triangle.</text>
+    <text start="1533.97" dur="5.16">And then out of this comes\nq1 of t, which is equal to--</text>
+    <text start="1539.13" dur="3.84">which is equal to\n1 minus q4 of t.</text>
+    <text start="1542.97" dur="8.49">And this is q1, so q1 of t\ngoes here, and q4 goes here.</text>
+    <text start="1551.46" dur="2.972">So whenever this\nswitch is high--</text>
+    <text start="1554.432" dur="2.583">whenever this switch is on, this\nswitch is off and vice
+        versa.</text>
+    <text start="1557.015" dur="3.325"></text>
+    <text start="1560.34" dur="1.36">Why would I do that?</text>
+    <text start="1561.7" dur="5.83">If you think about it, if Vref\nis all the way at the top,</text>
+    <text start="1567.53" dur="3.4">that means the top\nswitch is always on.</text>
+    <text start="1570.93" dur="2.75">If VA is near the\nbottom, that means</text>
+    <text start="1573.68" dur="2.52">the bottom switch is always on.</text>
+    <text start="1576.2" dur="2.22">If the reference is\nright here in the middle,</text>
+    <text start="1578.42" dur="3.46">this triangle wave goes\nfrom a plus and minus,</text>
+    <text start="1581.88" dur="2.75">I would have it\nswitching with 50% duty</text>
+    <text start="1584.63" dur="2.59">cycle between top and bottom.</text>
+    <text start="1587.22" dur="3.35">And on average, with respect\nto VR, this would be 0.</text>
+    <text start="1590.57" dur="4.11">So I can linearly change the\naverage voltage synthesized</text>
+    <text start="1594.68" dur="5.07">by VA with respect to VR over\none switching period based</text>
+    <text start="1599.75" dur="3.88">on this triangle intercept PWM.</text>
+    <text start="1603.63" dur="2.86">Does that make\nsense to everybody?</text>
+    <text start="1606.49" dur="3.7">Now, I should say I&amp;#39;m showing\nthis with balanced
+        triangles.</text>
+    <text start="1610.19" dur="2.75">You could do this with any\nother kind of waveform,</text>
+    <text start="1612.94" dur="2.22">like a sawtooth waveform\nor something like that,</text>
+    <text start="1615.16" dur="2.85">where at least there&amp;#39;s a\nproportionality in time</text>
+    <text start="1618.01" dur="4.68">between the height and how\nlong the comparator trips for.</text>
+    <text start="1622.69" dur="2.61">But balanced triangles\ntend to give you</text>
+    <text start="1625.3" dur="2.43">better switching\nharmonic content</text>
+    <text start="1627.73" dur="3.21">than nonbalanced triangle waves.</text>
+    <text start="1630.94" dur="3.72">Does that make\nsense to everybody?</text>
+    <text start="1634.66" dur="5.64">So suppose I had a\nmachine and I wanted</text>
+    <text start="1640.3" dur="11.04">to create some waveform that\nlooked like something like VAR</text>
+    <text start="1651.34" dur="1.45">on average.</text>
+    <text start="1652.79" dur="2.69">So I&amp;#39;m going to draw\nthis bar, meaning average</text>
+    <text start="1655.48" dur="2.46">over one switching cycle.</text>
+    <text start="1657.94" dur="7.92">I would like this to be V\nsub m sine of omega line t,</text>
+    <text start="1665.86" dur="6.06">for example, where I&amp;#39;m assuming\nthat omega line is
+        much,</text>
+    <text start="1671.92" dur="3.12">much less than 2 pi f switch.</text>
+    <text start="1675.04" dur="3.91">That is, this is a very\nslowly varying sine wave.</text>
+    <text start="1678.95" dur="11.277">So what I&amp;#39;m saying is I have\nsome triangle wave like
+        this.</text>
+    <text start="1690.227" dur="1.083">Maybe I&amp;#39;ll draw it bigger.</text>
+    <text start="1691.31" dur="3.17"></text>
+    <text start="1694.48" dur="2.67">This is my PWM\nwaveform, and I&amp;#39;m trying</text>
+    <text start="1697.15" dur="4.49">to generate a sine\nwave that maybe there&amp;#39;s</text>
+    <text start="1701.64" dur="3.7">a hundred switching cycles\nor something like that</text>
+    <text start="1705.34" dur="1.93">per line cycle.</text>
+    <text start="1707.27" dur="6.77">So this is 2 pi\nover omega switch.</text>
+    <text start="1714.04" dur="6.07">And this is 2 pi over\nomega line versus time.</text>
+    <text start="1720.11" dur="2.63">Does that make\nsense to everybody?</text>
+    <text start="1722.74" dur="2.85">And as long as--\nand I should say,</text>
+    <text start="1725.59" dur="2.745">what I&amp;#39;m trying to\ndo is I need my--</text>
+    <text start="1728.335" dur="3.465"></text>
+    <text start="1731.8" dur="7.96">if this is V sub m\nsine of omega lt,</text>
+    <text start="1739.76" dur="6.11">I need V sub m scaled\nsuch that at least the--</text>
+    <text start="1745.87" dur="1.51">I&amp;#39;m sorry, this is VA--</text>
+    <text start="1747.38" dur="2.96">this is the reference voltage--</text>
+    <text start="1750.34" dur="2.44">is less than VDC over 2.</text>
+    <text start="1752.78" dur="5.09">So let me clarify how\nwe&amp;#39;re going to do this.</text>
+    <text start="1757.87" dur="3.45">And I apologize, that&amp;#39;s\nprobably not very clear.</text>
+    <text start="1761.32" dur="2.19">What I&amp;#39;m going to\ndo is I&amp;#39;m going</text>
+    <text start="1763.51" dur="15.33">to make VAR ref equal to V sub\nm divided by VDC over 2 times</text>
+    <text start="1778.84" dur="1.155">V sub triangle.</text>
+    <text start="1779.995" dur="3.285"></text>
+    <text start="1783.28" dur="6">And then I&amp;#39;ll make\nthat sine of omega lt.</text>
+    <text start="1789.28" dur="3.24">So this thing-- this\nthing is the thing--</text>
+    <text start="1792.52" dur="4.41">this is VA ref that I&amp;#39;m\ngoing to compare to VT max.</text>
+    <text start="1796.93" dur="1.62">So this is--</text>
+    <text start="1798.55" dur="3.93">I&amp;#39;m sorry, this is VT max.</text>
+    <text start="1802.48" dur="3.99">So if VT max was 1 volt,\njust for simplicity,</text>
+    <text start="1806.47" dur="3.06">I&amp;#39;m going to make\nV sub m over VDC</text>
+    <text start="1809.53" dur="2.39">over 2 the height of\nmy reference waveform.</text>
+    <text start="1811.92" dur="2.815"></text>
+    <text start="1814.735" dur="1.625">So I can create--</text>
+    <text start="1816.36" dur="2.39">if I do this, then\nwhat I&amp;#39;m going to get</text>
+    <text start="1818.75" dur="9.27">is VAR as a result of running\nthis thing into this comparator</text>
+    <text start="1828.02" dur="4.11">network because this\nis my triangle away</text>
+    <text start="1832.13" dur="1.18">from my controller.</text>
+    <text start="1833.31" dur="3.68">The peak of my voltage is\nswitching between plus VDC</text>
+    <text start="1836.99" dur="2.41">over 2 and minus VDC over 2.</text>
+    <text start="1839.4" dur="5.63">So what I&amp;#39;m going to\nget is VAR is going</text>
+    <text start="1845.03" dur="6.9">to be equal to Vm over VDC--</text>
+    <text start="1851.93" dur="11.91">it&amp;#39;s going to be equal\nto Vm sine of omega lt,</text>
+    <text start="1863.84" dur="3.74">as long as V sub m is\nless than VDC over 2.</text>
+    <text start="1867.58" dur="4.36"></text>
+    <text start="1871.94" dur="0.9">Is that clear?</text>
+    <text start="1872.84" dur="2.045">Or should I try to\nexplain that better?</text>
+    <text start="1874.885" dur="3.805"></text>
+    <text start="1878.69" dur="3.6">I can modulate this\nthing up and down</text>
+    <text start="1882.29" dur="2.73">such that what would\nbe the biggest sine</text>
+    <text start="1885.02" dur="2.49">wave I could create without\ndistortion with this scheme,</text>
+    <text start="1887.51" dur="2.25">or at least with what\nI&amp;#39;ve told you so far,</text>
+    <text start="1889.76" dur="4.29">would be if V sub m was\nactually equal to VDC</text>
+    <text start="1894.05" dur="8.02">over 2, which would mean\nthe top of this waveform</text>
+    <text start="1902.07" dur="2.8">would exactly touch the\ntop of the triangle wave.</text>
+    <text start="1904.87" dur="2.09">So I wouldn&amp;#39;t have\nany period in which</text>
+    <text start="1906.96" dur="3.51">I&amp;#39;m exceeding duty ratio of 1.</text>
+    <text start="1910.47" dur="8.26">The problem here is if my\nreference waveform exceeds</text>
+    <text start="1918.73" dur="2.01">the height of the\ntriangle wave, then</text>
+    <text start="1920.74" dur="2.49">I&amp;#39;m going to get some time\nperiod where I stop
+        switching,</text>
+    <text start="1923.23" dur="4.98">and I just have the top\nswitch on constantly</text>
+    <text start="1928.21" dur="1.62">or the bottom switch\non constantly.</text>
+    <text start="1929.83" dur="2.85">And then I get some distortion.</text>
+    <text start="1932.68" dur="3.84">By keeping my reference always\nbelow the height of the
+        triangle</text>
+    <text start="1936.52" dur="8.19">wave, I kind of keep the no\ndistortion relative at least</text>
+    <text start="1944.71" dur="4.29">over a switching cycle,\naveraged over a switching cycle.</text>
+    <text start="1949" dur="1.085">Any questions about that?</text>
+    <text start="1950.085" dur="3.985"></text>
+    <text start="1954.07" dur="3.48">So when we do this,\nand I say, OK, I&amp;#39;m</text>
+    <text start="1957.55" dur="5.16">going to do this for phase A, I\ndo the same thing for phase B,</text>
+    <text start="1962.71" dur="2.46">except I shift it by a\nthird of a line cycle,</text>
+    <text start="1965.17" dur="3.1">and phase C is shifted by\na third of a line cycle,</text>
+    <text start="1968.27" dur="3.32">then at least as far\nas the local averages,</text>
+    <text start="1971.59" dur="3.54">I&amp;#39;m creating a\nvoltage A with respect</text>
+    <text start="1975.13" dur="1.758">to reference that\nfollows a sine wave,</text>
+    <text start="1976.888" dur="1.542">a voltage B that\nfollows a sine wave,</text>
+    <text start="1978.43" dur="1.72">a voltage C that\nfollows a sine wave.</text>
+    <text start="1980.15" dur="2.96">And yes, each of these\nnodes is going up and down,</text>
+    <text start="1983.11" dur="3.57">but if this load is inductive,\nit will filter that,</text>
+    <text start="1986.68" dur="3.67">and then the currents\nwill look very sinusoidal.</text>
+    <text start="1990.35" dur="1.89">Does that make\nsense to everybody?</text>
+    <text start="1992.24" dur="2.91">So I can really\ngenerate something</text>
+    <text start="1995.15" dur="2.67">that looks like a sinusoidal,\nat least on average,</text>
+    <text start="1997.82" dur="4.08">output, just the way I would do\nit with a single-phase
+        inverter.</text>
+    <text start="2001.9" dur="3.503">So this is the same trick\nof triangle intercept of PWM</text>
+    <text start="2005.403" dur="1.167">that we talked about before.</text>
+    <text start="2006.57" dur="4.89"></text>
+    <text start="2011.46" dur="1.21">Any questions?</text>
+    <text start="2012.67" dur="3.56"></text>
+    <text start="2016.23" dur="2.42">OK, so that&amp;#39;s nice.</text>
+    <text start="2018.65" dur="4.96">This technique is\nvery good when we</text>
+    <text start="2023.61" dur="4.18">are trying to synthesize a\nwaveform with a lot of purity.</text>
+    <text start="2027.79" dur="2.3">The six-step waveform\nI showed you before</text>
+    <text start="2030.09" dur="1.59">had a ton of harmonic\ncontent, a ton</text>
+    <text start="2031.68" dur="2.47">of low-frequency\nharmonic content in it.</text>
+    <text start="2034.15" dur="3.8">This PWM waveform\nreally only has</text>
+    <text start="2037.95" dur="3.3">content as long as you stay\nwhere your reference never</text>
+    <text start="2041.25" dur="3.03">exceeds the height\nof the triangle.</text>
+    <text start="2044.28" dur="4.649">It really only has of harmonic\ncontent near the switching</text>
+    <text start="2048.929" dur="2.111">frequency and its harmonics.</text>
+    <text start="2051.04" dur="3.77">There&amp;#39;s some difference with the\nline frequency and
+        the carrier</text>
+    <text start="2054.81" dur="2.215">frequency stuff, but\nit&amp;#39;s all pushed up</text>
+    <text start="2057.025" dur="1.125">to the switching frequency.</text>
+    <text start="2058.15" dur="1.667">So if I have a high\nswitching frequency,</text>
+    <text start="2059.817" dur="3.303">I get a very nice purity\nwaveform, at least averaged</text>
+    <text start="2063.12" dur="0.995">over a switching cycle.</text>
+    <text start="2064.115" dur="2.853"></text>
+    <text start="2066.968" dur="3.231">But I said, what&amp;#39;s\nthe largest waveform</text>
+    <text start="2070.199" dur="2.911">I can synthesize that way, at\nleast with what I&amp;#39;ve
+        told you</text>
+    <text start="2073.11" dur="5.589">so far, is I can make\nthis voltage V sub m up</text>
+    <text start="2078.699" dur="2.101">to VDC over 2.</text>
+    <text start="2080.8" dur="5.04">So this inverter can switch\nand it can synthesize--</text>
+    <text start="2085.84" dur="0.75">I could think of--</text>
+    <text start="2086.59" dur="5.609">I could think of this as\nsynthesizing VAR, VBR, and VCR,</text>
+    <text start="2092.199" dur="3.421">which is going to also give me\nthe same thing for VAN, VBN,</text>
+    <text start="2095.62" dur="3.66">and VCN, because there&amp;#39;s\nno triple-N content here,</text>
+    <text start="2099.28" dur="9.39">of being V sub m sine omega line\nt so long as Vm is less than</text>
+    <text start="2108.67" dur="2.03">or equal to VDC over 2.</text>
+    <text start="2110.7" dur="3.83"></text>
+    <text start="2114.53" dur="2.82">If I&amp;#39;m going to synthesize\na sine wave like that,</text>
+    <text start="2117.35" dur="5.183">we often define something called\nm or the modulation index.</text>
+    <text start="2122.533" dur="5.137"></text>
+    <text start="2127.67" dur="2.94">Sometimes this is called\nthe depth of modulation</text>
+    <text start="2130.61" dur="7.92">also, which is essentially V\nsub m divided by VDC over 2.</text>
+    <text start="2138.53" dur="5.38">This is how big a sine\nwave am I generating?</text>
+    <text start="2143.91" dur="3.18">How big is this sine\nwave relative to VDC</text>
+    <text start="2147.09" dur="1.68">over 2 or relative\nto the maximum</text>
+    <text start="2148.77" dur="1.6">I can do without distorting?</text>
+    <text start="2150.37" dur="2.87"></text>
+    <text start="2153.24" dur="2.7">If at least with what\nI&amp;#39;ve told you so far,</text>
+    <text start="2155.94" dur="7.013">I make m greater than 1 or V\nsub m bigger than VDC over 2,</text>
+    <text start="2162.953" dur="1.417">then what will\nhappen is I&amp;#39;ll stop</text>
+    <text start="2164.37" dur="1.5">switching for part\nof the waveform,</text>
+    <text start="2165.87" dur="2.37">and I&amp;#39;ll start distorting.</text>
+    <text start="2168.24" dur="2.6">Any questions about that?</text>
+    <text start="2170.84" dur="5.69"></text>
+    <text start="2176.53" dur="2.5">Well, that&amp;#39;s fine.</text>
+    <text start="2179.03" dur="2.96">And through this\nwhole period, at least</text>
+    <text start="2181.99" dur="2.85">averaged over a\nswitching cycle, if I&amp;#39;m</text>
+    <text start="2184.84" dur="3.42">doing this sinusoidal\nor sine triangle PWM,</text>
+    <text start="2188.26" dur="2.97">this neutral point averaged\nover switching cycle</text>
+    <text start="2191.23" dur="2.28">always has 0 average\nvoltage, in other words,</text>
+    <text start="2193.51" dur="4.36">equal to the reference voltage,\nhalfway between the bus
+        voltage.</text>
+    <text start="2197.87" dur="2.66">So I&amp;#39;m not getting\nany third harmonic</text>
+    <text start="2200.53" dur="1.34">swinging around on the neutral.</text>
+    <text start="2201.87" dur="6.03"></text>
+    <text start="2207.9" dur="2.58">Why do I think about this?</text>
+    <text start="2210.48" dur="2.73">Because if you think\nabout an electric machine,</text>
+    <text start="2213.21" dur="1.92">and this is a\ntypical application</text>
+    <text start="2215.13" dur="2.64">for this kind of\nthing, the back emf</text>
+    <text start="2217.77" dur="2.22">tends to be\nproportional to speed.</text>
+    <text start="2219.99" dur="4.74">And how much current I want\nto drive in the motor--</text>
+    <text start="2224.73" dur="1.92">if I want more\ncurrent, I try to drive</text>
+    <text start="2226.65" dur="3.09">more voltage, which will drive\nmore current into the windings.</text>
+    <text start="2229.74" dur="3.87">So very often, the\namplitude of the voltage,</text>
+    <text start="2233.61" dur="3.39">if I thought about some\nmachine, which is just sitting</text>
+    <text start="2237" dur="3.81">here connected like this--</text>
+    <text start="2240.81" dur="2.25">and maybe I&amp;#39;m just\ntrying to generate--</text>
+    <text start="2243.06" dur="5.73">I&amp;#39;m trying to use my inverter\nto generate essentially
+        three</text>
+    <text start="2248.79" dur="2.52">voltages, which are then\ngoing to drive current</text>
+    <text start="2251.31" dur="2.94">into these phases.</text>
+    <text start="2254.25" dur="5.46">At low speeds, the back emf\nvoltage of the motor is low,</text>
+    <text start="2259.71" dur="2.49">and I want low-- or\nI want low current.</text>
+    <text start="2262.2" dur="2.67">I want these voltage\nwaveforms-- these are now</text>
+    <text start="2264.87" dur="1.3">at the line frequency.</text>
+    <text start="2266.17" dur="6.13">These are at V sub m\nsine of omega line t.</text>
+    <text start="2272.3" dur="2.81">I want these\nvoltages to be small.</text>
+    <text start="2275.11" dur="4.14">But as speed goes up and the\nback emf internal to the machine</text>
+    <text start="2279.25" dur="3.67">goes up, I want a bigger\nV sub m, for example.</text>
+    <text start="2282.92" dur="2.12">So very often I can--</text>
+    <text start="2285.04" dur="2.16">basically, by\nchanging the V sub m,</text>
+    <text start="2287.2" dur="1.92">by changing the amplitude\nof my reference,</text>
+    <text start="2289.12" dur="2.34">I change these\nvoltages&amp;#39; amplitudes,</text>
+    <text start="2291.46" dur="1.44">and then I change\nhow much current</text>
+    <text start="2292.9" dur="1.39">I&amp;#39;m driving into my load.</text>
+    <text start="2294.29" dur="2.25">So I often want\nto modulate that.</text>
+    <text start="2296.54" dur="2.09">And typically, as\nI&amp;#39;m going up in speed</text>
+    <text start="2298.63" dur="1.92">or I&amp;#39;m going up\nin power or both,</text>
+    <text start="2300.55" dur="3.363">I&amp;#39;m trying to make\nV sub m bigger.</text>
+    <text start="2303.913" dur="1.417">Does that make\nsense to everybody?</text>
+    <text start="2305.33" dur="2.85"></text>
+    <text start="2308.18" dur="5.49">Now, the challenge is eventually\nI run out of headroom.</text>
+    <text start="2313.67" dur="3.12">Suppose the internal\nback emf of these motors</text>
+    <text start="2316.79" dur="1.77">is getting really big.</text>
+    <text start="2318.56" dur="2.85">So I need a pretty\nbig voltage V sub m</text>
+    <text start="2321.41" dur="3.06">to drive current into my load.</text>
+    <text start="2324.47" dur="3.3">Once V sub m equals VDC\nover 2, suddenly I&amp;#39;m</text>
+    <text start="2327.77" dur="1.68">going to start\ndistorting, right?</text>
+    <text start="2329.45" dur="2.14">I&amp;#39;m not going to be\ngenerating just sine waves.</text>
+    <text start="2331.59" dur="4.39">I&amp;#39;m going to have low frequency\nharmonic content in my
+        output.</text>
+    <text start="2335.98" dur="2.07">So the question\nis, is there a way</text>
+    <text start="2338.05" dur="5.02">you can extend the\nrange over which</text>
+    <text start="2343.07" dur="3.33">you can generate, if\nyou will, pure sine</text>
+    <text start="2346.4" dur="3.12">waves at the output\nof your motor</text>
+    <text start="2349.52" dur="2.97">and generate like no\nlow frequency, line</text>
+    <text start="2352.49" dur="1.95">frequency harmonic content?</text>
+    <text start="2354.44" dur="2.89">And the answer is there&amp;#39;s\na trick for doing this.</text>
+    <text start="2357.33" dur="2.42">It can be done in a\nvariety of different ways,</text>
+    <text start="2359.75" dur="4.32">but I just thought I&amp;#39;d mention\nit because in the
+        motors world,</text>
+    <text start="2364.07" dur="2.86">this is a very common trick.</text>
+    <text start="2366.93" dur="2.49">And the idea is this.</text>
+    <text start="2369.42" dur="2.735">Suppose if I thought--</text>
+    <text start="2372.155" dur="4.695"></text>
+    <text start="2376.85" dur="2.31">if I thought of what\nthe duty ratio--</text>
+    <text start="2379.16" dur="2.85">if I thought of this switch q1--</text>
+    <text start="2382.01" dur="4.26">if I thought of this as q1, the\naverage value of q1 over a
+        cycle</text>
+    <text start="2386.27" dur="5.07">as being the duty ratio of this\nswitch, so modulation index</text>
+    <text start="2391.34" dur="1.65">of 1, the duty ratio\nof the top switch</text>
+    <text start="2392.99" dur="4.01">goes to 1, with what\nI&amp;#39;ve told you so far.</text>
+    <text start="2397" dur="4.57">So I could talk about the duty\nratio of this half bridge,</text>
+    <text start="2401.57" dur="2.28">just like it was\na buck converter,</text>
+    <text start="2403.85" dur="3.71">where I&amp;#39;m talking about on state\nfraction of the top
+        switch.</text>
+    <text start="2407.56" dur="2.89"></text>
+    <text start="2410.45" dur="5.01">The way this would look if I did\nmy sine triangle PWM would be
+        d1</text>
+    <text start="2415.46" dur="12.25">of t would be equal to 1/2 plus\nm over 2 sine of omega line
+        t.</text>
+    <text start="2427.71" dur="3.83">So if I did my sine\ntriangle PWM, if m was one,</text>
+    <text start="2431.54" dur="3.42">duty ratio goes to 1 when\nthe sine wave is peak,</text>
+    <text start="2434.96" dur="4.21">and it goes to 0 when\nsine wave is at minimum.</text>
+    <text start="2439.17" dur="2.13">Does that make\nsense to everybody?</text>
+    <text start="2441.3" dur="4.56">And then if I was looking at d3,\nit would be this same three--</text>
+    <text start="2445.86" dur="1.15">actually, it&amp;#39;s not d3.</text>
+    <text start="2447.01" dur="1.94">I forget what the\nmiddle switch--</text>
+    <text start="2448.95" dur="2.331">top switch-- it is d3.</text>
+    <text start="2451.281" dur="12.249">d3 would be equal to 1/2 plus m\nover 2 sine omega lt minus
+        2 pi</text>
+    <text start="2463.53" dur="2.61">over 3, for example.</text>
+    <text start="2466.14" dur="1.52">Does that make\nsense to everybody?</text>
+    <text start="2467.66" dur="3.58">And d5, which would be\nthe third bridge leg,</text>
+    <text start="2471.24" dur="9.84">would have 1/2 plus m over 2\nsine omega lt plus 2 pi over 3.</text>
+    <text start="2481.08" dur="4.73">So this is what would result\nwith this triangle intercept</text>
+    <text start="2485.81" dur="2.59">PWM done on the three phases.</text>
+    <text start="2488.4" dur="5.55">And what we said was\nbasically the average voltage</text>
+    <text start="2493.95" dur="2.28">is proportional--</text>
+    <text start="2496.23" dur="2.64">the average voltage at that\nnode with respect to ground</text>
+    <text start="2498.87" dur="2.25">is proportional\nto the duty ratio.</text>
+    <text start="2501.12" dur="2.04">With respect to the\nmidpoint, there&amp;#39;s</text>
+    <text start="2503.16" dur="3.72">this one half of the\nbus voltage in there.</text>
+    <text start="2506.88" dur="6.63">The question would be I have\na trouble that I&amp;#39;m
+        limited</text>
+    <text start="2513.51" dur="4.67">to making m less than 1.</text>
+    <text start="2518.18" dur="3.69">Because when m exactly\nequals one, the peak of this</text>
+    <text start="2521.87" dur="4.78">drives the duty ratio of\none just touches the top.</text>
+    <text start="2526.65" dur="3.14">If I try to make m\n1.5, what would happen</text>
+    <text start="2529.79" dur="2.88">is for some part of the\ncycle, duty ratio basically</text>
+    <text start="2532.67" dur="1.72">saturates at 1, the\ntop switches on,</text>
+    <text start="2534.39" dur="1.76">and I get a bunch of distortion.</text>
+    <text start="2536.15" dur="3.31">Is that clear to everybody?</text>
+    <text start="2539.46" dur="2.08">So here&amp;#39;s the trick people use.</text>
+    <text start="2541.54" dur="2.24">It&amp;#39;s kind of a cool trick.</text>
+    <text start="2543.78" dur="3.75">There&amp;#39;s different ways\nto implement this trick.</text>
+    <text start="2547.53" dur="1.72">So this isn&amp;#39;t the way\nyou have to do it.</text>
+    <text start="2549.25" dur="3.32">But suppose I did this.</text>
+    <text start="2552.57" dur="15.276">I could take and add m over\n12 sine of 3 omega line t</text>
+    <text start="2567.846" dur="2.39">to each of these waveforms.</text>
+    <text start="2570.236" dur="9.784"></text>
+    <text start="2580.02" dur="2.49">Why would I do that?</text>
+    <text start="2582.51" dur="7.17">Well, because when I think about\nsine, if I looked at this
+        duty</text>
+    <text start="2589.68" dur="2.74">ratio, it would look like this.</text>
+    <text start="2592.42" dur="1.7">If I just took--</text>
+    <text start="2594.12" dur="4.93">here, I would have a half, and\nI&amp;#39;m doing something
+        like this.</text>
+    <text start="2599.05" dur="4.31"></text>
+    <text start="2603.36" dur="4.12">What I can do is I can add in\na third harmonic component.</text>
+    <text start="2607.48" dur="1.79">What does a third\nharmonic component do?</text>
+    <text start="2609.27" dur="1.385">It does something like this.</text>
+    <text start="2610.655" dur="5.345"></text>
+    <text start="2616" dur="10.02">So the sum of this piece, which\nis this, and this piece, which</text>
+    <text start="2626.02" dur="2.61">is this, has some\ndistorted shape</text>
+    <text start="2628.63" dur="1.61">which does something like this.</text>
+    <text start="2630.24" dur="5.73"></text>
+    <text start="2635.97" dur="8.05">And what that means is I can\nturn up m just bigger than 1,</text>
+    <text start="2644.02" dur="2.96">and it turns out\nto be about 1.15,</text>
+    <text start="2646.98" dur="5.94">before basically the\npeak will hit VDC over 2</text>
+    <text start="2652.92" dur="4.8">or before my duty ratio\nwill saturate at 1.</text>
+    <text start="2657.72" dur="5.42">And so that gives me an extra\n15% of voltage I can synthesize.</text>
+    <text start="2663.14" dur="1.69">And the way I&amp;#39;m\nsynthesizing it is I&amp;#39;m</text>
+    <text start="2664.83" dur="3.65">adding third harmonic\ndistortion in.</text>
+    <text start="2668.48" dur="3.48">So I&amp;#39;m adding some third\nharmonic to VAR, to VBR,</text>
+    <text start="2671.96" dur="2.19">and VCR.</text>
+    <text start="2674.15" dur="2.22">But why doesn&amp;#39;t that matter?</text>
+    <text start="2676.37" dur="3.54">Because the third harmonic,\nthat third harmonic component</text>
+    <text start="2679.91" dur="2.34">that I drew in yellow, just\nappears at the neutral.</text>
+    <text start="2682.25" dur="2.53">And the line-to-line\nvoltages don&amp;#39;t have it.</text>
+    <text start="2684.78" dur="2.77"></text>
+    <text start="2687.55" dur="2.76">So that&amp;#39;s a technique\nthat&amp;#39;s sometimes called</text>
+    <text start="2690.31" dur="2.01">third-harmonic injection PWM.</text>
+    <text start="2692.32" dur="5.55">You can do it by adding\nthird harmonic onto your--</text>
+    <text start="2697.87" dur="3.63">instead of doing this, you\nadd some third harmonic</text>
+    <text start="2701.5" dur="2.79">onto that thing, and\nthen you get an ability</text>
+    <text start="2704.29" dur="5.1">to expand your duty\nratio range or expand</text>
+    <text start="2709.39" dur="4.73">the fundamental voltage you can\nsynthesize without distortion.</text>
+    <text start="2714.12" dur="2.34">Any questions about that?</text>
+    <text start="2716.46" dur="0.66">Yeah, Jack.</text>
+    <text start="2717.12" dur="2.82">AUDIENCE: Can you\nexplain again how it&amp;#39;s--</text>
+    <text start="2719.94" dur="1.27">like VDC is fixed.</text>
+    <text start="2721.21" dur="3.8">So how is this increasing--</text>
+    <text start="2725.01" dur="1.592">overcoming back emf?</text>
+    <text start="2726.602" dur="0.958">DAVID PERREAULT: Right.</text>
+    <text start="2727.56" dur="5.43">Well, let&amp;#39;s assume the back emf\nis at the fundamental,
+        right?</text>
+    <text start="2732.99" dur="7.05">So what I have to worry about\nis how much fundamental can I</text>
+    <text start="2740.04" dur="1.83">create here?</text>
+    <text start="2741.87" dur="2.04">The vacuum is at\nthe fundamental.</text>
+    <text start="2743.91" dur="2.97">How much fundamental\ncan I create here?</text>
+    <text start="2746.88" dur="4.26">And the problem with not doing\nthis third-harmonic distortion</text>
+    <text start="2751.14" dur="2.25">trick is that if I try to\nturn up the duty ratio more,</text>
+    <text start="2753.39" dur="1.89">I get a lot of low\nfrequency harmonics.</text>
+    <text start="2755.28" dur="2.67">I get third and\nfifth, other content</text>
+    <text start="2757.95" dur="2.22">in here, which is then\ngoing to drive low frequency</text>
+    <text start="2760.17" dur="2.87">content in the machine.</text>
+    <text start="2763.04" dur="4.74">This trick, what it lets\nme do is I basically</text>
+    <text start="2767.78" dur="4.566">am going to create\nthe fundamental,</text>
+    <text start="2772.346" dur="2.914">plus I&amp;#39;m going to create\nsome third harmonic here,</text>
+    <text start="2775.26" dur="2.58">third harmonic here,\nand third harmonic here.</text>
+    <text start="2777.84" dur="2.155">But the third harmonic\nelements all cancel.</text>
+    <text start="2779.995" dur="1.375">They just show up\nat the neutral,</text>
+    <text start="2781.37" dur="2.61">and the neutral goes up and\ndown by the third harmonic.</text>
+    <text start="2783.98" dur="5.49">So I can keep this\ncomponent pure</text>
+    <text start="2789.47" dur="3.78">because I&amp;#39;m not saturating\nmy comparison anymore.</text>
+    <text start="2793.25" dur="3.21">I&amp;#39;m not making this\nsignal go out of the range</text>
+    <text start="2796.46" dur="3.75">just for that little bit,\nfor that extra roughly 15%</text>
+    <text start="2800.21" dur="1.99">of modulation index over 1.</text>
+    <text start="2802.2" dur="2.695">So I can go up to m of 1.15.</text>
+    <text start="2804.895" dur="0.875">Does that make sense?</text>
+    <text start="2805.77" dur="2.99"></text>
+    <text start="2808.76" dur="6.54">Now, that gives me a\nlittle bit more head room</text>
+    <text start="2815.3" dur="2.14">to synthesize a little\nbit more voltage.</text>
+    <text start="2817.44" dur="2.33">And we&amp;#39;re often\nconstrained by how much</text>
+    <text start="2819.77" dur="2.49">voltage we can synthesize\nwith our inverter.</text>
+    <text start="2822.26" dur="3.18">What do I do if I&amp;#39;m\nnot happy about that?</text>
+    <text start="2825.44" dur="4.64">Well, I could just keep\nturning up m beyond 1.</text>
+    <text start="2830.08" dur="2.93">What happens if I\nturn up m beyond 1?</text>
+    <text start="2833.01" dur="6.68">Well, if I turn up m beyond\n1, and my reference waveform</text>
+    <text start="2839.69" dur="4.38">was going to swing up here\nlike that, what I would do</text>
+    <text start="2844.07" dur="5.13">is I would get a\nbunch of PWM switching</text>
+    <text start="2849.2" dur="4.53">until the middle of the cycle or\nsomething where I just flat
+        top.</text>
+    <text start="2853.73" dur="4.41">And so my PWM waveform for each\nphase might look like this.</text>
+    <text start="2858.14" dur="1.41">It&amp;#39;s PWMing.</text>
+    <text start="2859.55" dur="1.8">And then it&amp;#39;ll just\nsit at the top.</text>
+    <text start="2861.35" dur="2.49">And it&amp;#39;ll start PWMing again.</text>
+    <text start="2863.84" dur="2.25">And if I keep\npushing it up and I</text>
+    <text start="2866.09" dur="3.04">keep making my reference\nwaveform bigger</text>
+    <text start="2869.13" dur="4.51">and bigger and bigger, the limit\nof that is m goes to
+        infinity.</text>
+    <text start="2873.64" dur="2.94">It&amp;#39;s just that I&amp;#39;m just going\nto generate a
+        square wave.</text>
+    <text start="2876.58" dur="2.1">He&amp;#39;s going to be on\nfor half the cycle.</text>
+    <text start="2878.68" dur="1.65">He&amp;#39;s going to be on\nfor half the cycle.</text>
+    <text start="2880.33" dur="1.91">And you&amp;#39;re back to\nthe six-step waveform</text>
+    <text start="2882.24" dur="3.386">that I talked about before.</text>
+    <text start="2885.626" dur="2.694">And in that case, then\nI really do generate</text>
+    <text start="2888.32" dur="1.78">the maximum fundamental.</text>
+    <text start="2890.1" dur="4.34">The maximum fundamental is\nbasically VAR is a square wave.</text>
+    <text start="2894.44" dur="4.23">It&amp;#39;s VDC over 2\ntimes 4 over pi is</text>
+    <text start="2898.67" dur="3.96">the fundamental of a\nsquare wave, of amplitude</text>
+    <text start="2902.63" dur="2.85">plus and minus VDC over 2.</text>
+    <text start="2905.48" dur="2.92">That&amp;#39;s the biggest\nfundamental I can synthesize.</text>
+    <text start="2908.4" dur="5.75">And that sets an upper bound\nof how the fundamental voltage</text>
+    <text start="2914.15" dur="1.15">I can drive here.</text>
+    <text start="2915.3" dur="3.2">The only problem I get with\ndoing that is that waveform has</text>
+    <text start="2918.5" dur="1.77">third harmonic,\nwhich will cancel,</text>
+    <text start="2920.27" dur="4.15">but it also has 5th and\n7th and 11th and 13th.</text>
+    <text start="2924.42" dur="3.947">And I will get harmonic currents\nflowing in these phase
+        windings</text>
+    <text start="2928.367" dur="1.833">when those harmonic\ncurrents probably aren&amp;#39;t</text>
+    <text start="2930.2" dur="3.55">helping me drive the machine.</text>
+    <text start="2933.75" dur="2.22">So I can synthesize\nsomething that gives me</text>
+    <text start="2935.97" dur="3.27">nice, effectively-- at least\non a local average basis,</text>
+    <text start="2939.24" dur="3.21">average over switching\ncycle-- sine waves up</text>
+    <text start="2942.45" dur="3.87">until the amplitude\nequals VDC over 2.</text>
+    <text start="2946.32" dur="4.44">If I use my third\nharmonic injection trick,</text>
+    <text start="2950.76" dur="4.9">I can get it up to\nVDC over 2 times 1.15.</text>
+    <text start="2955.66" dur="2.78">And then if I don&amp;#39;t\ncare about distortion,</text>
+    <text start="2958.44" dur="3.73">I&amp;#39;m going to let a bunch of\nlow frequency harmonics
+        exist.</text>
+    <text start="2962.17" dur="3.83">I can just drive up the\nmodulation index even further</text>
+    <text start="2966" dur="3.27">and get up to 4\nover pi VDC over 2.</text>
+    <text start="2969.27" dur="2.4">And people do that.</text>
+    <text start="2971.67" dur="3.27">In fact, in the Prius,\nthe Toyota guys eventually</text>
+    <text start="2974.94" dur="2.64">published a paper saying,\nyeah, we ran out of headroom</text>
+    <text start="2977.58" dur="2.04">and we wanted to\nrun our motor faster</text>
+    <text start="2979.62" dur="4.02">for higher speed, so we just\nlet it saturate and generate</text>
+    <text start="2983.64" dur="0.88">the harmonics.</text>
+    <text start="2984.52" dur="2.48">And the motor still\nworked, and we were OK.</text>
+    <text start="2987" dur="2.91">But you pay a price for that.</text>
+    <text start="2989.91" dur="1.99">So people do do this.</text>
+    <text start="2991.9" dur="2.48">But if you want your\nwaveforms to be pure and not</text>
+    <text start="2994.38" dur="3.018">have low frequency harmonics\nand generate that noise</text>
+    <text start="2997.398" dur="2.542">in your load, whatever it is,\nwith that low frequency
+        content</text>
+    <text start="2999.94" dur="2.755">in your load, you&amp;#39;ve got to\nkeep your modulation
+        index down.</text>
+    <text start="3002.695" dur="2.575"></text>
+    <text start="3005.27" dur="2.67">Any questions?</text>
+    <text start="3007.94" dur="0.87">Yeah.</text>
+    <text start="3008.81" dur="3.39">AUDIENCE: Is it possible to\nstep up VDC with a [INAUDIBLE]</text>
+    <text start="3012.2" dur="0.58">before?</text>
+    <text start="3012.78" dur="1.22">DAVID PERREAULT: Absolutely.</text>
+    <text start="3014" dur="2.13">And in fact, that&amp;#39;s\nwhat people do.</text>
+    <text start="3016.13" dur="2.17">So why is this a concern?</text>
+    <text start="3018.3" dur="3.44">Because if you&amp;#39;re in a Prius,\nyou&amp;#39;ve got this
+        bus voltage.</text>
+    <text start="3021.74" dur="2.38">And that bus voltage is\nyour battery voltage.</text>
+    <text start="3024.12" dur="3.088">And that might vary\nover some range.</text>
+    <text start="3027.208" dur="2.542">And then you&amp;#39;re trying to deal\nwith this motor whose
+        back emf</text>
+    <text start="3029.75" dur="2.44">varies over some range\nand you need to drive it.</text>
+    <text start="3032.19" dur="2.54">If you don&amp;#39;t like that,\nthen you put another stage</text>
+    <text start="3034.73" dur="2.04">in between your battery\nand your converter,</text>
+    <text start="3036.77" dur="3.28">and you can control the DC\nbus voltage to go up higher.</text>
+    <text start="3040.05" dur="2.84">And then you&amp;#39;re only\nlimited by how high</text>
+    <text start="3042.89" dur="2.25">voltage these switches are.</text>
+    <text start="3045.14" dur="1.54">So you&amp;#39;re always\nlimited by that.</text>
+    <text start="3046.68" dur="4.01">But yes, people do actually\ncontrol this bus voltage</text>
+    <text start="3050.69" dur="2.7">from the battery voltage, for\nexample, in an electric vehicle</text>
+    <text start="3053.39" dur="1.63">to be something higher.</text>
+    <text start="3055.02" dur="3.47">And they might control it\ndynamically if they had to,</text>
+    <text start="3058.49" dur="4.23">depending upon the operating\ncondition they want.</text>
+    <text start="3062.72" dur="0.52">All right.</text>
+    <text start="3063.24" dur="1.94">Well, have a great day.</text>
+    <text start="3065.18" dur="3.77">We will pick up a\nnew topic next class.</text>
+    <text start="3068.95" dur="3.05"></text>
+</transcript>

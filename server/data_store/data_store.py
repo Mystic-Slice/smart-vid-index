@@ -9,7 +9,7 @@ from .data_classes import Caption
 import html
 
 class VideoSearchDataStore:
-    def __init__(self, qdrant_url, collection_name, embedding_func, segment_length=30):
+    def __init__(self, qdrant_url, collection_name, embedding_func):
 
         sample_metadata = {
             'author': '', 
@@ -20,7 +20,7 @@ class VideoSearchDataStore:
             'video_id': '',
         }
         self.__collection_name = collection_name
-        self.__segment_length = segment_length
+        self.__segment_length = 30
 
         try:
             logging.info(f"[{self.__class__.__name__}={self.__collection_name}] Attempting to connect to existing collections.")
@@ -51,14 +51,20 @@ class VideoSearchDataStore:
 
         logging.info(f"[{self.__class__.__name__}={self.__collection_name}] DataStore initialized successfully")
 
-    def add_playlist_to_db(self, xml_caption_metadata_pairs: List[Tuple[str, dict]]) -> bool:
+    def add_playlist_to_db(self, xml_caption_metadata_pairs: List[Tuple[str, dict]], segment_length: int = None) -> bool:
+        if segment_length is not None:
+            self.__segment_length = segment_length
+
         logging.info(f"[VideoSearchDataStore={self.__collection_name}] Adding playlist with {len(xml_caption_metadata_pairs)} videos to DB")
         for i, (xml_caption, metadata) in enumerate(xml_caption_metadata_pairs):
             logging.info(f"[VideoSearchDataStore={self.__collection_name}] Adding video {i+1}/{len(xml_caption_metadata_pairs)}")
             self.add_video_to_db(xml_caption, metadata)
         return True
 
-    def add_video_to_db(self, xml_caption: str | None, metadata: dict | None) -> bool:
+    def add_video_to_db(self, xml_caption: str | None, metadata: dict | None, segment_length: int = None) -> bool:
+        if segment_length is not None:
+            self.__segment_length = segment_length
+
         if xml_caption is None:
             logging.info(f"[VideoSearchDataStore={self.__collection_name}] Invalid caption string")
             return False
@@ -130,3 +136,6 @@ class VideoSearchDataStore:
         results = self.__caption_datastore.similarity_search(query, k=num_results)
         logging.info(f"[VideoSearchDataStore={self.__collection_name}] Search completed successfully num_results={len(results)}")
         return results
+    
+    def get_retriever(self):
+        return self.__video_datastore.as_retriever()

@@ -15,7 +15,7 @@ class QueryResolver:
         self.__use_openai = os.getenv("USE_OPENAI") == "1"
 
         if self.__use_openai:
-            logging.info("[LLM::Embeddings] Using OpenAI models embeddings")
+            logging.info("[LLM] Using OpenAI models embeddings")
 
             from langchain_openai import OpenAIEmbeddings, ChatOpenAI
             OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -27,7 +27,7 @@ class QueryResolver:
             )
 
         else:
-            logging.info("[LLM::Embeddings] Using Ollama embeddings")
+            logging.info("[LLM] Using Ollama embeddings")
 
             from langchain_ollama import ChatOllama, OllamaEmbeddings
             self.__embedding_func = OllamaEmbeddings(model='llama3.1:latest')
@@ -65,8 +65,11 @@ class QueryResolver:
         multi_queries = multi_queries_chain.invoke({"question": question})
         logging.info(f"[LLM] Generated multi queries: {multi_queries}")
 
+        logging.info(f"[LLM] Retrieving relevant videos to generate context")
         relevant_videos = self.get_relevant_videos(multi_queries, ds)
         video_ids = [doc.metadata["video_id"] for doc in relevant_videos]
+        logging.info("[LLM] Retrieved relevant videos: \n" + "\n".join([doc.metadata["title"] for doc in relevant_videos]))
+
         search_kwargs = {
             "k": 10,
             "filter": models.Filter(
@@ -116,8 +119,8 @@ class QueryResolver:
         logging.info(f"[LLM] Executing prompt to summarize video content: {generate_summary}")
         output = generate_summary.invoke({
             "transcript": transcript,
-            "description": metadata["description"],
-            "auto": metadata["is_auto"]
+            # "description": metadata["description"],
+            # "auto": metadata["is_auto"]
         })
         return output
     

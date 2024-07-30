@@ -1,5 +1,5 @@
 import re
-from typing import List, Tuple
+from typing import Callable, List, Optional, Tuple
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client.http import models
 from langchain.docstore.document import Document
@@ -51,26 +51,32 @@ class VideoSearchDataStore:
 
         logging.info(f"[{self.__class__.__name__}={self.__collection_name}] DataStore initialized successfully")
 
-    def add_playlist_to_db(self, xml_caption_metadata_pairs: List[Tuple[str, dict]], segment_length: int = None) -> bool:
+    def add_playlist_to_db(
+        self, 
+        caption_data: List[Tuple[str, dict]], 
+        summarize: Optional[Callable[[str, dict], str]] = None, 
+        segment_length: Optional[int] = None
+    ) -> bool:
         if segment_length is not None:
             self.__segment_length = segment_length
 
-        logging.info(f"[VideoSearchDataStore={self.__collection_name}] Adding playlist with {len(xml_caption_metadata_pairs)} videos to DB")
-        for i, (xml_caption, metadata) in enumerate(xml_caption_metadata_pairs):
-            logging.info(f"[VideoSearchDataStore={self.__collection_name}] Adding video {i+1}/{len(xml_caption_metadata_pairs)}")
-            self.add_video_to_db(xml_caption, metadata)
+        logging.info(f"[VideoSearchDataStore={self.__collection_name}] Adding playlist with {len(caption_data)} videos to DB")
+        for i, (xml_caption, metadata) in enumerate(caption_data):
+            logging.info(f"[VideoSearchDataStore={self.__collection_name}] Adding video {i+1}/{len(caption_data)}")
+            self.add_video_to_db(xml_caption, metadata, summarize)
         return True
 
-    def add_video_to_db(self, xml_caption: str | None, metadata: dict | None, segment_length: int = None) -> bool:
+    def add_video_to_db(
+        self, 
+        xml_caption: str, 
+        metadata: dict, 
+        summarize: Optional[Callable[[str, dict], str]] = None, 
+        segment_length: Optional[int] = None
+    ) -> bool:
         if segment_length is not None:
             self.__segment_length = segment_length
 
-        if xml_caption is None:
-            logging.info(f"[VideoSearchDataStore={self.__collection_name}] Invalid caption string")
-            return False
-
         if self.is_video_in_db(metadata["video_id"]):
-            print("here")
             logging.info(f"[VideoSearchDataStore={self.__collection_name}] Video {metadata['video_id']} already in DB")
             return False
 
@@ -87,12 +93,16 @@ class VideoSearchDataStore:
             }
             for caption in caption_list_merged
         ]
-        documents = [Document(page_content=text, metadata=meta) for text, meta in zip(texts, metas)]
+        documents = [Document(page_content=text, metadata=meta) for text, meta in zip(texts, metas) if not text == ""]
+
+        print(documents)
 
         ids = self.__caption_datastore.add_documents(documents)
         logging.info(f"[VideoSearchDataStore={self.__collection_name}] Caption added successfully num_segments={len(ids)}")
 
-        complete_transcript = " ".join(texts)
+        complete_transcript = " ".join([caption.text for caption in caption_list])
+        if summarize is not None:
+            complete_transcript = summarize(complete_transcript, metadata)
         vid_doc = Document(page_content=complete_transcript, metadata=metadata)
 
         ids = self.__video_datastore.add_documents([vid_doc])
@@ -101,7 +111,7 @@ class VideoSearchDataStore:
     
     def is_video_in_db(self, video_id: str) -> bool:
         results = self.__video_datastore.similarity_search(
-            query="", 
+            query=" ", 
             filter=models.Filter(
                 must=[
                     models.FieldCondition(
@@ -129,13 +139,16 @@ class VideoSearchDataStore:
 
         return text
 
-    def search(self, query: str, num_results: int) -> List[dict]:
-        query = self.clean_text(query, remove_annots=False)
+    # def search(self, query: str, num_results: int) -> List[dict]:
+    #     query = self.clean_text(query, remove_annots=False)
 
-        logging.info(f"[VideoSearchDataStore={self.__collection_name}] Searching for query: {query}")
-        results = self.__caption_datastore.similarity_search(query, k=num_results)
-        logging.info(f"[VideoSearchDataStore={self.__collection_name}] Search completed successfully num_results={len(results)}")
-        return results
+    #     logging.info(f"[VideoSearchDataStore={self.__collection_name}] Searching for query: {query}")
+    #     results = self.__caption_datastore.similarity_search(query, k=num_results)
+    #     logging.info(f"[VideoSearchDataStore={self.__collection_name}] Search completed successfully num_results={len(results)}")
+    #     return results
     
-    def get_retriever(self):
-        return self.__video_datastore.as_retriever()
+    def get_video_retriever(self, search_kwargs: dict):
+        return self.__video_datastore.as_retriever(search_kwargs=search_kwargs)
+    
+    def get_caption_retriever(self, search_kwargs: dict):
+        return self.__caption_datastore.as_retriever(search_kwargs=search_kwargs)

@@ -24,11 +24,21 @@ As a professional summarizer, create a concise and comprehensive summary of the 
 2. Incorporate main ideas and essential information, eliminating extraneous language and focusing on critical aspects.
 3. Rely strictly on the provided text, without including external information.
 4. Format the summary in paragraph form for easy understanding.
-5. Include any relevant information from the `Video Description` but ignore it if it is not pertinent to the video content.
-6. Make sure to keep the important keywords mentioned in the `Transcript`.
-7. If `Auto` is true, the transcript is an auto generated caption which may contain spelling  mistakes and other errors. Correct for it as needed.
+5. Make sure to keep the important keywords mentioned in the `Transcript`.
 By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner.
 `Transcript`: {transcript}
-`Video Description`: {description}
-`Auto`: {auto}
 """
+
+# GENERATE_VIDEO_SUMMARY = \
+# """
+# As a professional summarizer, create a concise and comprehensive summary of the provided text, which is a transcription of a video, for later retrieval using a distance-based similarity search while adhering to these guidelines:
+# 1. Craft a summary of the `Transcript` that is detailed, thorough, in-depth, and complex, while maintaining clarity and conciseness. Do not speak in a third person perspective.
+# 2. Incorporate main ideas and essential information, eliminating extraneous language and focusing on critical aspects.
+# 3. Rely strictly on the provided text, without including external information.
+# 4. Format the summary in paragraph form for easy understanding.
+# 5. Include any relevant information from the `Video Description` but ignore it if it is not pertinent to the video content.
+# 6. Make sure to keep the important keywords mentioned in the `Transcript`.
+# 7. If `Auto` is true, the transcript is an auto generated caption which may contain spelling  mistakes and other errors. Correct for it as needed.
+# By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner.
+# `Transcript`: {transcript}
+# """

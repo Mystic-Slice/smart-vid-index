@@ -19,9 +19,10 @@ urls = [
     # "https://www.youtube.com/watch?v=nTq-OKy5kHs", # mitocw
     # "https://www.youtube.com/watch?v=R8uxmXmtOrk", # hotz
     # "https://www.youtube.com/watch?v=sq-SqqsTlbM", # peterson
-    "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", # andrej playlist
+    # "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", # andrej playlist
     # "https://www.youtube.com/playlist?list=PL0-GT3co4r2y2YErbmuJw2L5tW4Ew2O5B", # 3blue1brown playlist
     "https://www.youtube.com/playlist?list=PL8URkIfzUkcfwX7twgLYSzyMZGYF9Aihb", # naruto quotes playlist
+    "https://www.youtube.com/watch?v=9tEuNRezlyI", # jiraiya speech
 ]
 
 resolver = query_resolver.QueryResolver()
@@ -31,22 +32,26 @@ ds = data_store.VideoSearchDataStore(os.getenv("QDRANT_URL"), db_name, resolver.
 # for url in urls:
 #     print(url)
 #     if CaptionRetriever.is_playlist(url):
-#         caption_metadata_pairs = CaptionRetriever.get_english_captions_xml_playlist(url)
+#         caption_metadata_pairs = CaptionRetriever.get_english_captions_xml_playlist(url, is_already_in_db=ds.is_video_in_db)
 #         print("playlist")
 #         for caption, metadata in caption_metadata_pairs:
 #             if caption is not None:
 #                 print(metadata['title'])
-#                 print(caption[:100], metadata)
+#                 print(caption[:100])
 #             else:
-#                 print(f"{metadata['title']} has no captions")
+#                 print(f"{metadata['title']} is already in db or has no captions")
+#         caption_metadata_pairs = list(filter(lambda x: x[0] is not None, caption_metadata_pairs))
+#         ds.add_playlist_to_db(caption_metadata_pairs, summarize=resolver.summarize, segment_length=30)
 
-#         ds.add_playlist_to_db(caption_metadata_pairs, 30)
 #     else:
-#         caption, metadata = CaptionRetriever.get_english_captions_xml_video(url)
+#         caption, metadata = CaptionRetriever.get_english_captions_xml_video(url, is_already_in_db=ds.is_video_in_db)
 #         print("video")
-#         print(caption[:100], metadata)
 
-#         ds.add_video_to_db(caption, metadata, 30)
+#         if caption is not None:
+#             print(caption[:100])
+#             ds.add_video_to_db(caption, metadata, resolver.summarize, 30)
+#         else:
+#             print(f"{metadata['title']} is already in db or has no captions")
 
 query = "does IQ decline with age?"
 query = "what happens if we live a modern, sedentary lifestyle?"

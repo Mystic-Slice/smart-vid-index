@@ -1,1 +1,4 @@
-*__pycache__/
+__pycache__
+*.log
+*.env
+!server/example_server_config.env

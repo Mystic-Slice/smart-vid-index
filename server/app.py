@@ -19,11 +19,13 @@ else:
 
 SEGMENT_LENGTH = 60
 
-resolver = None
-ds = None
-
 app = Flask(__name__)
 app.secret_key = "dummy"
+
+def get_resolver_ds():
+    resolver = query_resolver.QueryResolver()
+    ds = data_store.VideoSearchDataStore(os.getenv("QDRANT_URL"), db_name, resolver.get_embedding_func())
+    return resolver, ds
 
 @app.route("/")
 def root():
@@ -31,11 +33,46 @@ def root():
 
 @app.route("/question")
 def answer_question():
-    resolver = query_resolver.QueryResolver()
-    ds = data_store.VideoSearchDataStore(os.getenv("QDRANT_URL"), db_name, resolver.get_embedding_func())
+    resolver, ds = get_resolver_ds()
 
     q = request.args.get("q")
 
     answer = resolver.answer_question(q, ds)
     print("here", answer)
     return { "question": q, "answer": answer }
+
+@app.route("/video")
+def add_videos():
+    url = request.args.get("url")
+
+    resolver, ds = get_resolver_ds()
+
+    msg = ""
+
+    if CaptionRetriever.is_playlist(url):
+        caption_metadata_pairs = CaptionRetriever.get_english_captions_xml_playlist(url, is_already_in_db=ds.is_video_in_db)
+        for i, (caption, metadata) in enumerate(caption_metadata_pairs):
+            if caption is not None:
+                msg += f"{i+1}.{metadata['title']} added\n"
+                # msg += caption[:100] + "\n"
+
+                print(metadata['title'])
+                print(caption[:100])
+            else:
+                msg += f"{i+1}.{metadata['title']} is already in db or has no captions\n"
+                print(f"{metadata['title']} is already in db or has no captions")
+        caption_metadata_pairs = list(filter(lambda x: x[0] is not None, caption_metadata_pairs))
+        ds.add_playlist_to_db(caption_metadata_pairs, summarize=resolver.summarize, segment_length=SEGMENT_LENGTH)
+        msg += "playlist added"
+    else:
+        caption, metadata = CaptionRetriever.get_english_captions_xml_video(url, is_already_in_db=ds.is_video_in_db)
+        if caption is not None:
+            msg += metadata['title'] + " added\n"
+            # msg += caption[:100] + "\n"
+            print(caption[:100])
+            ds.add_video_to_db(caption, metadata, resolver.summarize, SEGMENT_LENGTH)
+            msg += "video added"
+        else:
+            print(f"{metadata['title']} is already in db or has no captions")
+            msg += "video already in db or has no captions"
+    return { "message": msg }

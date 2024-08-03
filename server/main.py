@@ -63,8 +63,8 @@ query = "who created the circumstances that caused Obito to despair?"
 # query = "who stopped Gaara from killing destroying the world and all the people?"
 # query = "Can there be hate between those who experienced the same pain?"
 
-query = "When does the determinant of a transformation matrix become zero?"
-query = "what happens when you scale up a vector and what does it mean?"
+# query = "When does the determinant of a transformation matrix become zero?"
+# query = "what happens when you scale up a vector and what does it mean?"
 
 # query = "How can we optimize llm training in pytorch?"
 # query = "What is distributed data parallel and how does it help in training large language models?"

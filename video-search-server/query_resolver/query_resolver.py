@@ -115,7 +115,10 @@ class QueryResolver:
         answer = rag_chain.invoke({"context": context, "question": question})
         logging.info(f"[LLM] Generated answer: {answer}")
 
-        return answer, links
+        return {
+            "answer": answer,
+            "links": links
+        }
     
     def summarize(self, transcript: str, metadata: dict) -> str:
         generate_summary = (

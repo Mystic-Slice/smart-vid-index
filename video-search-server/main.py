@@ -75,6 +75,8 @@ query = "who created the circumstances that caused Obito to despair?"
 # query = "Is there a three node tree example for which the greedy algorithm fails?"
 # query = "where is the Dijkstra's algorithm used?"
 
+# query = "What caused Obito's despair?"
+
 # results = ds.search(query, 5)
 
 # for result in results:

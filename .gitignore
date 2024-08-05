@@ -1,4 +1,4 @@
 __pycache__
 *.log
 *.env
-!server/example_server_config.env
+!video-search-server/example_server_config.env

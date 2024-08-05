@@ -4,7 +4,7 @@ Please answer the question based on the context. The context is a selection of t
 Follow these guidelines to provide a helpful and informative response:
 1. Answer the question in a clear, concise, and informative manner.
 2. Adhere to the context as much as possible when constructing your response.
-3. The context is a collection of snippets of video transcriptions. So, when you mention the context, mention it like its from a video.
+3. The context is a collection of snippets of video transcriptions. So, talk as if you found the information from the videos.
 4. In case the context is not sufficient to answer the question, build a general answer but mention it to the user.
 Context: {context}
 Question: {question}

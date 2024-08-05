@@ -31,15 +31,15 @@ def get_resolver_ds():
 def root():
     return { "message": "Hello World" }
 
-@app.route("/question")
-def answer_question():
+@app.route("/search", methods=["POST"])
+def search():
     resolver, ds = get_resolver_ds()
 
-    q = request.args.get("q")
+    query = request.json["query"]
 
-    answer = resolver.answer_question(q, ds)
-    print("here", answer)
-    return { "question": q, "answer": answer }
+    response = resolver.answer_question(query, ds)
+    result = { "question": query, "response": response }
+    return result
 
 @app.route("/video")
 def add_videos():

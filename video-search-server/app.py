@@ -41,6 +41,16 @@ def search():
     result = { "question": query, "response": response }
     return result
 
+@app.route("/all_titles")
+def all_titles():
+    _, ds = get_resolver_ds()
+    return { "titles": ds.get_all_video_titles() }
+
+@app.route("/all_metadata")
+def all_metadata():
+    _, ds = get_resolver_ds()
+    return { "metadata": ds.get_all_vids() }
+
 @app.route("/video")
 def add_videos():
     url = request.args.get("url")

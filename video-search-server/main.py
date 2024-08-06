@@ -4,7 +4,7 @@ import util
 import query_resolver
 import os
 
-util.init_logger()
+util.init_logger(stdout=True)
 util.load_env("server_config.env")
 util.init_langsmith()
 
@@ -87,6 +87,16 @@ query = "who created the circumstances that caused Obito to despair?"
 # results = []
 
 # context = "\n".join([result.page_content for result in results])
-answer = resolver.answer_question(query, ds)
-print(answer)
+# answer = resolver.answer_question(query, ds)
+# print(answer)
 
+metadatas = ds.get_all_vids()
+print(metadatas)
+
+print(len(metadatas))
+
+for metadata in metadatas:
+    print(metadata["video_id"])
+
+
+print(ds.get_all_video_titles())

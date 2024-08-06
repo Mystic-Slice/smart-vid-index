@@ -16,8 +16,8 @@ export default function Messages(
   const messagesEndRef = useRef(null); // just used to scroll to the bottom of the messages
 
   useEffect(() => {
-    if (items.length > 2) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (items.length > 2 && messagesEndRef.current) {
+      (messagesEndRef.current as HTMLElement).scrollIntoView({ behavior: "smooth" });
     }
   }, [items.length]);
 

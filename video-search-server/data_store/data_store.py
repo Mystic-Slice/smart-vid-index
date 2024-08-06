@@ -1,6 +1,7 @@
 import re
 from typing import Callable, List, Optional, Tuple
 from langchain_qdrant import QdrantVectorStore
+from qdrant_client import QdrantClient
 from qdrant_client.http import models
 from langchain.docstore.document import Document
 import logging
@@ -21,6 +22,7 @@ class VideoSearchDataStore:
         }
         self.__collection_name = collection_name
         self.__segment_length = 30
+        self.__qdrant_client = QdrantClient(url=qdrant_url)
 
         try:
             logging.info(f"[{self.__class__.__name__}={self.__collection_name}] Attempting to connect to existing collections.")
@@ -50,6 +52,21 @@ class VideoSearchDataStore:
             )
 
         logging.info(f"[{self.__class__.__name__}={self.__collection_name}] DataStore initialized successfully")
+
+    def get_all_vids(self):
+        points = self.__qdrant_client.scroll(
+            collection_name=self.__collection_name + "_vid_store", 
+            with_payload=True, 
+            with_vectors=False,
+            limit=self.__qdrant_client.count(self.__collection_name + "_vid_store").count
+        )[0]
+
+        metadatas = [point.payload["metadata"] for point in points]
+
+        return metadatas
+    
+    def get_all_video_titles(self):
+        return [metadata["title"] for metadata in self.get_all_vids()]
 
     def add_playlist_to_db(
         self, 

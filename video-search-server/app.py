@@ -41,6 +41,16 @@ def search():
     result = { "question": query, "response": response }
     return result
 
+@app.route("/mock_search", methods=["POST"])
+def mock_search():
+    query = request.json["query"]
+    response = {
+        "answer": f"mock response to {query}",
+        "links": ["https://www.youtube.com/embed/dQw4w9WgXcQ", "https://www.youtube.com/embed/3YxaaGgTQYM"]
+    }
+    result = { "question": query, "response": response }
+    return result
+
 @app.route("/all_titles")
 def all_titles():
     _, ds = get_resolver_ds()

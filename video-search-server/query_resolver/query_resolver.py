@@ -101,7 +101,7 @@ class QueryResolver:
         context = "\n".join([doc.page_content for doc, _ in relevant_captions_with_scores])
         logging.info(f"[LLM] Generated context: {context}")
 
-        links = [f"https://www.youtube.com/watch?v={doc.metadata['video_id']}&t={int(doc.metadata['start'])}" for doc, _ in relevant_captions_with_scores]
+        links = [f"https://www.youtube.com/embed/{doc.metadata['video_id']}&t={int(doc.metadata['start'])}" for doc, _ in relevant_captions_with_scores]
         logging.info("[LLM] Generated links:\n" + "\n".join(links))
 
         rag_chain = (

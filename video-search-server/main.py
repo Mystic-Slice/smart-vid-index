@@ -75,7 +75,7 @@ query = "who created the circumstances that caused Obito to despair?"
 # query = "Is there a three node tree example for which the greedy algorithm fails?"
 # query = "where is the Dijkstra's algorithm used?"
 
-# query = "What caused Obito's despair?"
+query = "What caused Obito's despair?"
 
 # results = ds.search(query, 5)
 
@@ -87,16 +87,16 @@ query = "who created the circumstances that caused Obito to despair?"
 # results = []
 
 # context = "\n".join([result.page_content for result in results])
-# answer = resolver.answer_question(query, ds)
-# print(answer)
+answer = resolver.answer_question(query, ds)
+print(answer)
 
-metadatas = ds.get_all_vids()
-print(metadatas)
+# metadatas = ds.get_all_vids()
+# print(metadatas)
 
-print(len(metadatas))
+# print(len(metadatas))
 
-for metadata in metadatas:
-    print(metadata["video_id"])
+# for metadata in metadatas:
+#     print(metadata["video_id"])
 
 
-print(ds.get_all_video_titles())
+# print(ds.get_all_video_titles())

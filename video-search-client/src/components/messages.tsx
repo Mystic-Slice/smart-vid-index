@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Message from "./message";
 import { Item } from "~/types";
+import { CarouselDemo } from "./video_carousel";
 
 export default function Messages(
     { 
@@ -24,10 +25,13 @@ export default function Messages(
   return (
     <section className="w-full">
       {items.map((ev, index) => {
-        if (ev.video_carousel) {
+        if (ev.video_carousel_links) {
           return (
             // video carousel
-            <div>Empty for now</div>
+            // make the div is of full length and center the carousel
+            <div key={"carousel-"+index} className="flex justify-center p-3 h-64 bg-green-500">
+                <CarouselDemo links={ev.video_carousel_links} />
+            </div>
           );
         }
 

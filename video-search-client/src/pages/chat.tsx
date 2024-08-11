@@ -59,7 +59,10 @@ export default function Chat() {
         const answer = response.answer;
         const links = response.links;
 
-        setItems([...myItems, { prompt: answer, sender: "system" } as Item]);
+        myItems.push({ prompt: answer, sender: "system" } as Item);
+        myItems.push({ video_carousel_links: links, sender: "system" } as Item);
+
+        setItems(myItems);
         setIsProcessing(false);
     }
 

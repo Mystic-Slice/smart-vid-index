@@ -41,19 +41,40 @@ def search():
     result = { "question": query, "response": response }
     return result
 
-@app.route("/all_titles")
-def all_titles():
-    _, ds = get_resolver_ds()
-    return { "titles": ds.get_all_video_titles() }
+@app.route("/mock_search", methods=["POST"])
+def mock_search():
+    query = request.json["query"]
+    response = {
+        "answer": f"mock response to {query}",
+        "links": ["https://www.youtube.com/embed/dQw4w9WgXcQ", "https://www.youtube.com/embed/3YxaaGgTQYM"]
+    }
+    result = { "question": query, "response": response }
+    return result
 
-@app.route("/all_metadata")
+# @app.route("/all_titles")
+# def all_titles():
+#     _, ds = get_resolver_ds()
+#     return { "titles": ds.get_all_video_titles() }
+
+@app.route("/all_vids", methods=["POST"])
 def all_metadata():
     _, ds = get_resolver_ds()
-    return { "metadata": ds.get_all_vids() }
+    return { "videos": ds.get_all_vids() }
 
-@app.route("/video")
+@app.route("/del_vid", methods=["POST"])
+def del_vid():
+    video_id = request.json["video_id"]
+    _, ds = get_resolver_ds()
+    out = ds.delete_video(video_id)
+    print(out)
+    return { "message": f"deleted video {video_id} out: {out}" }
+
+@app.route("/add_vid", methods=["POST"])
 def add_videos():
-    url = request.args.get("url")
+    url = request.json["url"]
+
+    if url is None:
+        return { "message": "Invalid request: url is required" }
 
     resolver, ds = get_resolver_ds()
 

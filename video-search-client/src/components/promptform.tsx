@@ -33,7 +33,7 @@ export default function PromptForm({
   
     return (
       <form onSubmit={handleSubmit} className="animate-in fade-in duration-700">
-        <div className="flex mt-8">
+        <div className="flex mt-2">
           <input
             id="prompt-input"
             type="text"

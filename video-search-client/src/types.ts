@@ -1,5 +1,5 @@
 export interface Item {
-    prompt: string;
-    video_carousel?: any;
+    prompt?: string;
+    video_carousel_links?: any;
     sender: "user" | "system";
 }

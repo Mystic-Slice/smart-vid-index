@@ -105,6 +105,9 @@ class QueryResolver:
             f"https://www.youtube.com/embed/{doc.metadata['video_id']}?start={int(doc.metadata['start'])}&end={int(doc.metadata['start'] + doc.metadata['duration'])}"
             for doc, _ in relevant_captions_with_scores
         ]
+
+        K = 5
+        links = links[:K]
         logging.info("[LLM] Generated links:\n" + "\n".join(links))
 
         rag_chain = (

@@ -32,7 +32,7 @@ class CaptionRetriever:
             raise ValueError(f"Captions not found for the video: {video_url}")
 
         captions = handler.captions
-        metadata = metadata | { 'is_auto': False }
+        metadata = metadata | { 'is_auto': False, 'video_url': f'https://youtube.com/watch?v={video_id}' }
 
         for caption in captions:
             caption_code = caption.code

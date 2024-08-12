@@ -10,7 +10,7 @@ import {
   type CarouselApi,
 } from "~/components/ui/carousel"
 
-export function CarouselDemo({ links }: { links: string[] }) {
+export function YTVideoCarousel({ links, carousel_index }: { links: string[], carousel_index: number }) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -29,7 +29,7 @@ export function CarouselDemo({ links }: { links: string[] }) {
 
     // stop the yt video when the carousel is scrolled
     api.on("scroll", () => {
-      const vid_iframe = document.getElementById(`video-iframe-${api.previousScrollSnap()}`) as HTMLIFrameElement;
+      const vid_iframe = document.getElementById(`video-iframe-${carousel_index}-${api.previousScrollSnap()}`) as HTMLIFrameElement;
       vid_iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');      
     });
 
@@ -43,7 +43,7 @@ export function CarouselDemo({ links }: { links: string[] }) {
               <Card>
                 <CardContent className="flex bg-red-200 items-center justify-center p-0">
                   <iframe
-                    id={`video-iframe-${index}`}
+                    id={`video-iframe-${carousel_index}-${index}`}
                     src={link + "?version=3&enablejsapi=1"}
                     title={`video-${index}`}
                     className="w-full h-full"

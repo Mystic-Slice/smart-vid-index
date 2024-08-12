@@ -19,6 +19,7 @@ class VideoSearchDataStore:
             'length': 0, 
             'title': '', 
             'video_id': '',
+            'video_url': '',
         }
         self.__collection_name = collection_name
         self.__segment_length = 30
@@ -28,12 +29,12 @@ class VideoSearchDataStore:
             logging.info(f"[{self.__class__.__name__}={self.__collection_name}] Attempting to connect to existing collections.")
             self.__video_datastore = QdrantVectorStore.from_existing_collection(
                 url=qdrant_url,
-                collection_name=collection_name + "_vid_store",
+                collection_name=self.get_vid_datastore_name(),
                 embedding=embedding_func,
             )
             self.__caption_datastore = QdrantVectorStore.from_existing_collection(
                 url=qdrant_url,
-                collection_name=collection_name + "_caption_store",
+                collection_name=self.get_caption_datastore_name(),
                 embedding=embedding_func,
             )
         except:    
@@ -53,9 +54,15 @@ class VideoSearchDataStore:
 
         logging.info(f"[{self.__class__.__name__}={self.__collection_name}] DataStore initialized successfully")
 
+    def get_vid_datastore_name(self):
+        return self.__collection_name + "_vid_store"
+    
+    def get_caption_datastore_name(self):
+        return self.__collection_name + "_caption_store"
+
     def get_all_vids(self):
         points = self.__qdrant_client.scroll(
-            collection_name=self.__collection_name + "_vid_store", 
+            collection_name=self.get_vid_datastore_name(),
             with_payload=True, 
             with_vectors=False,
             limit=self.__qdrant_client.count(self.__collection_name + "_vid_store").count
@@ -142,6 +149,30 @@ class VideoSearchDataStore:
             k=1,
         )
         return results != []
+    
+    def delete_video(self, video_id: str) -> bool:
+        logging.info(f"[VideoSearchDataStore={self.__collection_name}] Deleting video {video_id}")
+
+        filter=models.Filter(
+            must=[
+                models.FieldCondition(
+                    key="metadata.video_id",
+                    match=models.MatchValue(
+                        value=video_id
+                    )
+                )
+            ]
+        )
+
+        out = self.__qdrant_client.delete(
+            collection_name=self.get_vid_datastore_name(),
+            points_selector=filter,
+        )
+        out = self.__qdrant_client.delete(
+            collection_name=self.get_caption_datastore_name(),
+            points_selector=filter,
+        )
+        return out
     
     def clean_text(self, text: str, remove_annots = True) -> str:
         # Covert html entities to unicode

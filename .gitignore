@@ -1,7 +1,7 @@
 __pycache__
 *.log
 *.env
-!video-search-server/example_server_config.env
+!server/example_server_config.env
 package-lock.json
 node_modules
 public/build/

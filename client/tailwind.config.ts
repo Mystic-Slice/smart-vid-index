@@ -19,6 +19,16 @@ const config = {
     },
     extend: {
       colors: {
+        // "background-color": "var(--background-color)",
+        // "primary-color": "var(--primary-color)",
+        // "secondary-color": "var(--secondary-color)",
+        // "accent-color": "var(--accent-color)",
+
+        "my-white": "var(--my-white)",
+        "my-grey": "var(--my-grey)",
+        "my-black": "var(--my-black)",
+        "my-accent": "var(--my-accent)",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

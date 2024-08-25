@@ -36,36 +36,36 @@ export function YTVideoCarousel({ links, carousel_index }: { links: string[], ca
   }, [api]);
 
   return (
-    <Carousel className="w-full max-w-sm h-full bg-blue-300" setApi={setApi}>
-      <CarouselContent className="bg-yellow-400 h-full">
-        {links.map((link, index) => (
-          <CarouselItem key={index}>
-              <Card>
-                <CardContent className="flex bg-red-200 items-center justify-center p-0">
-                  <iframe
-                    id={`video-iframe-${carousel_index}-${index}`}
-                    src={link + "?version=3&enablejsapi=1"}
-                    title={`video-${index}`}
-                    className="w-full h-full"
-                  />
-                </CardContent>
-              </Card>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+    <div className="flex flex-col">
+      <Carousel className="w-[500px] h-[300px]" setApi={setApi}>
+        <CarouselContent>
+          {links.map((link, index) => (
+            <CarouselItem key={index} className="flex justify-center">
+              <iframe
+                id={`video-iframe-${carousel_index}-${index}`}
+                src={link + "?version=3&enablejsapi=1"}
+                title={`video-${index}`}
+                className="w-[500px] h-[300px]"
+                allowFullScreen
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+            
       <div className="flex justify-center mt-4">
         {Array.from({ length: count }).map((_, index) => (
           <span
             key={index}
-            className={`inline-block w-3 h-3 rounded-full bg-gray-400 mx-2 ${
-            index + 1 === current ? "bg-[#291bf0]" : ""
+            className={`inline-block w-3 h-3 rounded-full mx-2 ${
+            index + 1 === current ? "bg-[#291bf0]" : "bg-gray-400"
             }`}
             onClick={() => api && api.scrollTo(index)}
           />
         ))}
       </div>
-    </Carousel>
+    </div>
   )
 }

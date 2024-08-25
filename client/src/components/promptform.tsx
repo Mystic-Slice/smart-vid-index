@@ -41,7 +41,7 @@ export default function PromptForm({
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Your message..."
-            className={`block w-full flex-grow${
+            className={`block w-full flex-grow p-4${
               disabled ? " rounded-md" : " rounded-l-md"
             }`}
             disabled={disabled}

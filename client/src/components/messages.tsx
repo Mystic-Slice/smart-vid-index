@@ -27,9 +27,7 @@ export default function Messages(
       {items.map((ev, index) => {
         if (ev.video_carousel_links) {
           return (
-            // video carousel
-            // make the div is of full length and center the carousel
-            <div key={"carousel-"+index} className="flex justify-center p-3 h-64 bg-green-500">
+            <div key={"carousel-"+index} className="flex justify-center p-3">
                 <YTVideoCarousel links={ev.video_carousel_links} carousel_index={index}/>
             </div>
           );

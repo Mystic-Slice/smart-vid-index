@@ -14,7 +14,7 @@ interface ScrollBarProps extends React.ComponentPropsWithoutRef<typeof ScrollAre
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   ScrollAreaProps
->(({ className, invisibleScrollbar = true, children, ...props }, ref) => (
+>(({ className, invisibleScrollbar = false, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
     className={cn("relative overflow-hidden", className)}

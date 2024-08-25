@@ -14,10 +14,9 @@ export default function Message({
     return (
       <div className={`w-full ${sender === "user" ? "text-right" : ""}`}>
         <div
-          className={`p-3 rounded-lg ${shouldFillWidth ? "" : "inline-block"} ${
+          className={`p-3 rounded-lg ${shouldFillWidth ? "" : "inline-block"} border-2 border-my-grey text-black ${
             sender === "user"
-              ? "ml-16 bg-blue-600 text-white"
-              : "bg-gray-200 text-black"
+              ? "ml-16 bg-my-grey" : ""
           } ${isSameSender ? "mt-2" : "mt-8"}`}
         >
           {children}

@@ -97,11 +97,13 @@ export default function Chat() {
             handler: deleteItem,
             label: "Delete",
             icon: <Trash2/>,
+            tooltip: "Delete video from collection",
         },
         {
             handler: linkToItem,
             label: "Link",
             icon: <SquareArrowOutUpRight/>,
+            tooltip: "Open video in new tab",
         }        
     ]
 
@@ -173,8 +175,9 @@ export default function Chat() {
                 addItem={addItem}
                 isAdding={isAdding}
             />
-            <div className={`h-full flex-grow transition-all duration-300 ${isSidebarOpen ? 'ml-[30%]' : 'ml-32'} p-6 flex flex-col`}>
-                <ScrollArea className="flex-grow bg-slate-400" invisibleScrollbar={true}>
+            <div className={`h-full flex-grow transition-all duration-300 ${isSidebarOpen ? 'ml-[25%]' : 'ml-[10%]'} p-2 flex flex-col`}>
+                <h1 className={`text-4xl text-center align-text-top text-black border-b-2 ${isSidebarOpen ? 'p-[30px]' : 'p-[18px]'} ml-0 mr-0`}>Smart Video Index</h1>
+                <ScrollArea className="flex-grow" invisibleScrollbar={true}>
                     <Messages
                         items={messageItems}
                         isProcessing={isProcessing}
@@ -195,9 +198,9 @@ export default function Chat() {
             <button 
                 onClick={toggleSidebar}
                 className={`absolute top-4 transition-all duration-300
-                    ${isSidebarOpen ? 'left-[calc(30%-1.25rem)]' : 'left-[calc(8rem-1.25rem)]'}
-                    z-50 bg-gray-800 text-white rounded-full w-10 h-10 flex items-center justify-center
-                    focus:outline-none hover:bg-gray-700`}>
+                    ${isSidebarOpen ? 'left-[calc(25%-1.4rem)]' : 'left-[calc(10%-1.4rem)]'}
+                    z-50 rounded-full w-10 h-10 flex items-center justify-center bg-my-white border-2 border-my-accent text-my-accent
+                    focus:outline-none hover:bg-my-accent hover:text-my-white`}>
                 {isSidebarOpen ? '◀' : '▶'}
             </button>
         </div>

@@ -46,7 +46,18 @@ def mock_search():
     query = request.json["query"]
     response = {
         "answer": f"mock response to {query}",
-        "links": ["https://www.youtube.com/embed/dQw4w9WgXcQ", "https://www.youtube.com/embed/3YxaaGgTQYM"]
+        "links": [
+            "https://www.youtube.com/embed/dQw4w9WgXcQ", 
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+            "https://www.youtube.com/embed/3YxaaGgTQYM",
+        ]
     }
     result = { "question": query, "response": response }
     return result
@@ -107,3 +118,7 @@ def add_videos():
             print(f"{metadata['title']} is already in db or has no captions")
             msg += "video already in db or has no captions"
     return { "message": msg }
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run()

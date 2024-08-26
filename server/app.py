@@ -37,8 +37,12 @@ def search():
 
     query = request.json["query"]
 
+    print(f"searching for {query}")
+
     response = resolver.answer_question(query, ds)
     result = { "question": query, "response": response }
+
+    print(f"Sending response: {response}")
     return result
 
 @app.route("/mock_search", methods=["POST"])

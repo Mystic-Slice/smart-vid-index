@@ -1,4 +1,4 @@
-import { SquareArrowOutUpRight, Trash2 } from "lucide-react";
+import { RefreshCcw, SquareArrowOutUpRight, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Id, toast } from "react-toastify";
 import Messages from "~/components/messages";
@@ -122,14 +122,18 @@ export default function Chat() {
     }
 
     useEffect(() => {
+        refreshChat();
+        refreshSidebar();
+    }, []);
+
+    const refreshChat = () => {
         setMessageItems([
             {
                 prompt: "How can I help you?",
                 sender: "system",
             },
         ]);
-        refreshSidebar();
-    }, []);
+    }
 
     const handleSubmit = async (e: any) => {
         const prompt = e.target.prompt.value as string;
@@ -176,7 +180,12 @@ export default function Chat() {
                 isAdding={isAdding}
             />
             <div className={`h-full flex-grow transition-all duration-300 ${isSidebarOpen ? 'ml-[25%]' : 'ml-[10%]'} p-2 flex flex-col`}>
-                <h1 className={`text-4xl text-center align-text-top text-black border-b-2 ${isSidebarOpen ? 'p-[30px]' : 'p-[18px]'} ml-0 mr-0`}>Smart Video Index</h1>
+                <div className="flex w-full border-b-2">
+                    <h1 className={`text-4xl flex-grow text-center align-text-top text-black ${isSidebarOpen ? 'p-[30px]' : 'p-[18px]'} ml-0 mr-0`}>Smart Video Index</h1>
+                    <button className="mr-3" onClick={refreshChat} title="Refresh Chat">
+                        <RefreshCcw/>
+                    </button>
+                </div>
                 <ScrollArea className="flex-grow" invisibleScrollbar={true}>
                     <Messages
                         items={messageItems}

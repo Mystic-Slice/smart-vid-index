@@ -32,6 +32,7 @@ Original question: {question}
 # Original question: {question}
 # """
 
+# Inspiration: https://www.reddit.com/r/ChatGPT/comments/13na8yp/highly_effective_prompt_for_summarizing_gpt4/
 GENERATE_VIDEO_SUMMARY = \
 """
 As a professional summarizer, create a concise and comprehensive summary of the provided text, which is a transcription of a video, for later retrieval using a distance-based similarity search while adhering to these guidelines:
